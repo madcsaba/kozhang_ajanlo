@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-01T22:22:51.207Z",
+  "generatedAt": "2026-10-04T10:41:58.164Z",
   "source": "https://kozhang.hu",
-  "sourceBuild": "K2JBYl8L",
+  "sourceBuild": "C70_nt9P",
   "counts": {
     "discussions": 16,
     "open": 3,
@@ -9,7 +9,7 @@
     "knowledge": 19,
     "taxonomyTopics": 12,
     "taxonomySubtopics": 120,
-    "questions": 62,
+    "questions": 88,
     "mediaSpeakers": 8
   },
   "categories": {
@@ -107,7 +107,7 @@
           },
           "minutes": 12,
           "unlocksAt": "2026-10-05T07:00:00",
-          "stepCount": 0
+          "stepCount": 8
         },
         {
           "index": 6,
@@ -116,8 +116,8 @@
             "en": "Minorities, communities and social cohesion"
           },
           "minutes": 12,
-          "unlocksAt": null,
-          "stepCount": 0
+          "unlocksAt": "2026-10-09T07:00:00",
+          "stepCount": 9
         },
         {
           "index": 7,
@@ -126,8 +126,8 @@
             "en": "Credible information and disinformation in the age of AI"
           },
           "minutes": 12,
-          "unlocksAt": null,
-          "stepCount": 0
+          "unlocksAt": "2026-10-12T07:00:00",
+          "stepCount": 9
         },
         {
           "index": 8,
@@ -136,7 +136,7 @@
             "en": "Credibility, impartiality and independence"
           },
           "minutes": 15,
-          "unlocksAt": null,
+          "unlocksAt": "2026-10-16T07:00:00",
           "stepCount": 0
         },
         {
@@ -146,12 +146,12 @@
             "en": "Content, platforms and digital access"
           },
           "minutes": 12,
-          "unlocksAt": null,
+          "unlocksAt": "2026-10-21T07:00:00",
           "stepCount": 0
         }
       ],
       "chapterCount": 10,
-      "stepCount": 41,
+      "stepCount": 67,
       "totalMinutes": 142,
       "knowledgeCount": 0,
       "knowledgeIds": [],
@@ -524,6 +524,240 @@
           "chapter": "Helyi közösségek és a külhoni magyarság",
           "chapterIndex": 4,
           "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/osszegzes-helyi"
+        },
+        {
+          "id": "kultura-oktatas-tudomany",
+          "title": "A kultúra, az oktatás és a tudomány közvetítése",
+          "kind": "video",
+          "minutes": 2,
+          "chapter": "A kultúra, az oktatás és a tudomány közvetítése",
+          "chapterIndex": 5,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/kultura-oktatas-tudomany"
+        },
+        {
+          "id": "magyar-temak",
+          "title": "Hazai témák",
+          "kind": "question",
+          "minutes": 2,
+          "chapter": "A kultúra, az oktatás és a tudomány közvetítése",
+          "chapterIndex": 5,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/magyar-temak"
+        },
+        {
+          "id": "kiket-latnal-szivesen",
+          "title": "Kiket látnál szívesen?",
+          "kind": "question",
+          "minutes": 1,
+          "chapter": "A kultúra, az oktatás és a tudomány közvetítése",
+          "chapterIndex": 5,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/kiket-latnal-szivesen"
+        },
+        {
+          "id": "kozvetitesek",
+          "title": "Közvetítések a tévében, rádióban",
+          "kind": "question",
+          "minutes": 2,
+          "chapter": "A kultúra, az oktatás és a tudomány közvetítése",
+          "chapterIndex": 5,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/kozvetitesek"
+        },
+        {
+          "id": "tudomany-ismeretterjesztes",
+          "title": "Tudomány és ismeretterjesztés",
+          "kind": "question",
+          "minutes": 2,
+          "chapter": "A kultúra, az oktatás és a tudomány közvetítése",
+          "chapterIndex": 5,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/tudomany-ismeretterjesztes"
+        },
+        {
+          "id": "kozmedia-gyerekeknek",
+          "title": "Közmédia gyerekeknek",
+          "kind": "question",
+          "minutes": 2,
+          "chapter": "A kultúra, az oktatás és a tudomány közvetítése",
+          "chapterIndex": 5,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/kozmedia-gyerekeknek"
+        },
+        {
+          "id": "masok-a-kulturarol",
+          "title": "Mit gondolnak mások?",
+          "kind": "infographic",
+          "minutes": 1,
+          "chapter": "A kultúra, az oktatás és a tudomány közvetítése",
+          "chapterIndex": 5,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/masok-a-kulturarol"
+        },
+        {
+          "id": "osszegzes-kultura",
+          "title": "Összegzés",
+          "kind": "infographic",
+          "minutes": 0,
+          "chapter": "A kultúra, az oktatás és a tudomány közvetítése",
+          "chapterIndex": 5,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/osszegzes-kultura"
+        },
+        {
+          "id": "kisebbsegek-kozossegek",
+          "title": "Kisebbségek, közösségek és társadalmi összetartozás",
+          "kind": "video",
+          "minutes": 1,
+          "chapter": "Kisebbségek, közösségek és társadalmi összetartozás",
+          "chapterIndex": 6,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/kisebbsegek-kozossegek"
+        },
+        {
+          "id": "kinek-a-tortenetet",
+          "title": "Kinek a történetét néznéd meg?",
+          "kind": "question",
+          "minutes": 2,
+          "chapter": "Kisebbségek, közösségek és társadalmi összetartozás",
+          "chapterIndex": 6,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/kinek-a-tortenetet"
+        },
+        {
+          "id": "milyen-formaban",
+          "title": "Milyen formában?",
+          "kind": "question",
+          "minutes": 1,
+          "chapter": "Kisebbségek, közösségek és társadalmi összetartozás",
+          "chapterIndex": 6,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/milyen-formaban"
+        },
+        {
+          "id": "kozmedia-felelossege",
+          "title": "A közmédia felelőssége",
+          "kind": "question",
+          "minutes": 2,
+          "chapter": "Kisebbségek, közösségek és társadalmi összetartozás",
+          "chapterIndex": 6,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/kozmedia-felelossege"
+        },
+        {
+          "id": "magyar-konyha",
+          "title": "A magyar konyha sokfélesége",
+          "kind": "infographic",
+          "minutes": 2,
+          "chapter": "Kisebbségek, közösségek és társadalmi összetartozás",
+          "chapterIndex": 6,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/magyar-konyha"
+        },
+        {
+          "id": "kikkel-talalkozol",
+          "title": "Kikkel találkozol a képernyőn?",
+          "kind": "question",
+          "minutes": 1,
+          "chapter": "Kisebbségek, közösségek és társadalmi összetartozás",
+          "chapterIndex": 6,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/kikkel-talalkozol"
+        },
+        {
+          "id": "reprezentacio",
+          "title": "Tudtad?",
+          "kind": "infographic",
+          "minutes": 1,
+          "chapter": "Kisebbségek, közösségek és társadalmi összetartozás",
+          "chapterIndex": 6,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/reprezentacio"
+        },
+        {
+          "id": "mitol-hiteles",
+          "title": "Mitől lesz hiteles?",
+          "kind": "question",
+          "minutes": 2,
+          "chapter": "Kisebbségek, közösségek és társadalmi összetartozás",
+          "chapterIndex": 6,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/mitol-hiteles"
+        },
+        {
+          "id": "osszegzes-kozossegek",
+          "title": "Összegzés",
+          "kind": "infographic",
+          "minutes": 0,
+          "chapter": "Kisebbségek, közösségek és társadalmi összetartozás",
+          "chapterIndex": 6,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/osszegzes-kozossegek"
+        },
+        {
+          "id": "hiteles-tajekoztatas",
+          "title": "Hiteles tájékoztatás és dezinformáció az AI korában",
+          "kind": "video",
+          "minutes": 1,
+          "chapter": "Hiteles tájékoztatás és dezinformáció az AI korában",
+          "chapterIndex": 7,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/hiteles-tajekoztatas"
+        },
+        {
+          "id": "mennyire-bizol",
+          "title": "Mennyire bízol abban, amit olvasol?",
+          "kind": "question",
+          "minutes": 2,
+          "chapter": "Hiteles tájékoztatás és dezinformáció az AI korában",
+          "chapterIndex": 7,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/mennyire-bizol"
+        },
+        {
+          "id": "igaz-vagy-hamis",
+          "title": "Igaz vagy Hamis?",
+          "kind": "question",
+          "minutes": 2,
+          "chapter": "Hiteles tájékoztatás és dezinformáció az AI korában",
+          "chapterIndex": 7,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/igaz-vagy-hamis"
+        },
+        {
+          "id": "mi-alapjan-dontesz",
+          "title": "Általában mi alapján döntesz?",
+          "kind": "question",
+          "minutes": 2,
+          "chapter": "Hiteles tájékoztatás és dezinformáció az AI korában",
+          "chapterIndex": 7,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/mi-alapjan-dontesz"
+        },
+        {
+          "id": "alhirek-tipusai",
+          "title": "Nem minden álhír egyforma",
+          "kind": "infographic",
+          "minutes": 1,
+          "chapter": "Hiteles tájékoztatás és dezinformáció az AI korában",
+          "chapterIndex": 7,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/alhirek-tipusai"
+        },
+        {
+          "id": "megosztottal-alhirt",
+          "title": "Megosztottál már álhírt?",
+          "kind": "question",
+          "minutes": 1,
+          "chapter": "Hiteles tájékoztatás és dezinformáció az AI korában",
+          "chapterIndex": 7,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/megosztottal-alhirt"
+        },
+        {
+          "id": "kozmedia-intezkedesei",
+          "title": "A közmédia felelőssége",
+          "kind": "question",
+          "minutes": 2,
+          "chapter": "Hiteles tájékoztatás és dezinformáció az AI korában",
+          "chapterIndex": 7,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/kozmedia-intezkedesei"
+        },
+        {
+          "id": "szakmai-szervezetek",
+          "title": "Ezeket mondták szakmai szervezetek",
+          "kind": "infographic",
+          "minutes": 1,
+          "chapter": "Hiteles tájékoztatás és dezinformáció az AI korában",
+          "chapterIndex": 7,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/szakmai-szervezetek"
+        },
+        {
+          "id": "osszegzes-dezinformacio",
+          "title": "Összegzés",
+          "kind": "infographic",
+          "minutes": 0,
+          "chapter": "Hiteles tájékoztatás és dezinformáció az AI korában",
+          "chapterIndex": 7,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/osszegzes-dezinformacio"
         }
       ],
       "mediaCount": 8,
