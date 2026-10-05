@@ -127,10 +127,12 @@ function topicPage(d) {
   if (d.totalMinutes) stats.push(`<span>kb. <b>${d.totalMinutes}</b> perc</span>`);
   if (d.opensAt) stats.push(`<span>nyílt: <b>${esc(huDate(d.opensAt))}</b></span>`);
 
+  // a már megnyílt (elmúlt) fejezetnél ne mutassuk a „nyílik:” feliratot
+  const nowLocal = new Date(Date.now() - new Date().getTimezoneOffset() * 6e4).toISOString().slice(0, 19);
   const chapters = d.chapters
     .map((ch) => {
       const qs = d.questions.filter((q) => q.chapterIndex === ch.index);
-      const unlock = ch.unlocksAt ? ` · nyílik: ${esc(huDate(ch.unlocksAt))}` : "";
+      const unlock = ch.unlocksAt && ch.unlocksAt > nowLocal ? ` · nyílik: ${esc(huDate(ch.unlocksAt))}` : "";
       return `<div class="ch" id="fejezet-${ch.index + 1}">
   <h3>${ch.index + 1}. ${esc(hu(ch.title))}</h3>
   <div class="m">${ch.minutes ? `kb. ${ch.minutes} perc` : ""}${ch.stepCount ? ` · ${ch.stepCount} lépés` : ""}${unlock}</div>

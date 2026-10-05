@@ -521,8 +521,9 @@ async function main() {
 
   const incoming = strip(payload);
   const unchanged = prevJson !== null && strip(prevJson) === incoming;
+  const force = process.argv.includes("--force"); // generatedAt frissítése változatlan tartalomnál is
 
-  if (unchanged) {
+  if (unchanged && !force) {
     console.log(`\n✓ ${path.relative(process.cwd(), OUT)} — nincs változás (build ${sourceBuild})`);
     console.log(`  ${((Date.now() - t0) / 1000).toFixed(1)} mp · a fájl érintetlen maradt`);
     return { changed: false, counts: payload.counts };
