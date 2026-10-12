@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-09T11:27:06.315Z",
+  "generatedAt": "2026-10-12T12:17:54.988Z",
   "source": "https://kozhang.hu",
-  "sourceBuild": "CAKkKC1T",
+  "sourceBuild": "te-dxL7l",
   "counts": {
     "discussions": 16,
     "open": 3,
@@ -9,7 +9,7 @@
     "knowledge": 19,
     "taxonomyTopics": 12,
     "taxonomySubtopics": 120,
-    "questions": 88,
+    "questions": 97,
     "mediaSpeakers": 8
   },
   "categories": {
@@ -125,9 +125,9 @@
             "hu": "Hiteles tájékoztatás és dezinformáció az AI korában",
             "en": "Credible information and disinformation in the age of AI"
           },
-          "minutes": 12,
+          "minutes": 13,
           "unlocksAt": "2026-10-12T07:00:00",
-          "stepCount": 9
+          "stepCount": 10
         },
         {
           "index": 8,
@@ -137,7 +137,7 @@
           },
           "minutes": 15,
           "unlocksAt": "2026-10-16T07:00:00",
-          "stepCount": 0
+          "stepCount": 8
         },
         {
           "index": 9,
@@ -151,8 +151,8 @@
         }
       ],
       "chapterCount": 10,
-      "stepCount": 67,
-      "totalMinutes": 142,
+      "stepCount": 76,
+      "totalMinutes": 143,
       "knowledgeCount": 0,
       "knowledgeIds": [],
       "questions": [
@@ -706,6 +706,15 @@
           "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/igaz-vagy-hamis"
         },
         {
+          "id": "igy-terjed-egy-alhir",
+          "title": "Így terjed egy álhír",
+          "kind": "question",
+          "minutes": 1,
+          "chapter": "Hiteles tájékoztatás és dezinformáció az AI korában",
+          "chapterIndex": 7,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/igy-terjed-egy-alhir"
+        },
+        {
           "id": "mi-alapjan-dontesz",
           "title": "Általában mi alapján döntesz?",
           "kind": "question",
@@ -758,6 +767,78 @@
           "chapter": "Hiteles tájékoztatás és dezinformáció az AI korában",
           "chapterIndex": 7,
           "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/osszegzes-dezinformacio"
+        },
+        {
+          "id": "hitelesseg-fuggetlenseg",
+          "title": "Hitelesség, pártatlanság és függetlenség",
+          "kind": "video",
+          "minutes": 1,
+          "chapter": "Hitelesség, pártatlanság és függetlenség",
+          "chapterIndex": 8,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/hitelesseg-fuggetlenseg"
+        },
+        {
+          "id": "mitol-hiteles-hirado",
+          "title": "Mitől hiteles egy híradó?",
+          "kind": "question",
+          "minutes": 2,
+          "chapter": "Hitelesség, pártatlanság és függetlenség",
+          "chapterIndex": 8,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/mitol-hiteles-hirado"
+        },
+        {
+          "id": "honnan-tajekozodsz",
+          "title": "Te honnan tájékozódsz?",
+          "kind": "question",
+          "minutes": 3,
+          "chapter": "Hitelesség, pártatlanság és függetlenség",
+          "chapterIndex": 8,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/honnan-tajekozodsz"
+        },
+        {
+          "id": "kiegyensulyozott-tajekoztatas",
+          "title": "Kiegyensúlyozott tájékoztatás",
+          "kind": "question",
+          "minutes": 3,
+          "chapter": "Hitelesség, pártatlanság és függetlenség",
+          "chapterIndex": 8,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/kiegyensulyozott-tajekoztatas"
+        },
+        {
+          "id": "szerkesztoi-dontes",
+          "title": "Szerkesztői döntés éles helyzetben",
+          "kind": "question",
+          "minutes": 2,
+          "chapter": "Hitelesség, pártatlanság és függetlenség",
+          "chapterIndex": 8,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/szerkesztoi-dontes"
+        },
+        {
+          "id": "sajat-hiradod",
+          "title": "A saját híradód",
+          "kind": "question",
+          "minutes": 3,
+          "chapter": "Hitelesség, pártatlanság és függetlenség",
+          "chapterIndex": 8,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/sajat-hiradod"
+        },
+        {
+          "id": "a-te-hiradod",
+          "title": "A te híradód",
+          "kind": "infographic",
+          "minutes": 1,
+          "chapter": "Hitelesség, pártatlanság és függetlenség",
+          "chapterIndex": 8,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/a-te-hiradod"
+        },
+        {
+          "id": "osszegzes-hiradas",
+          "title": "Összegzés",
+          "kind": "infographic",
+          "minutes": 0,
+          "chapter": "Hitelesség, pártatlanság és függetlenség",
+          "chapterIndex": 8,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/osszegzes-hiradas"
         }
       ],
       "mediaCount": 8,
