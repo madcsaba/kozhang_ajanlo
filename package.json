@@ -10,7 +10,13 @@
     "build": "node build.mjs && node build-pages.mjs",
     "serve": "node build.mjs && node build-pages.mjs && python3 -m http.server 8787 --directory public",
     "start": "node extract.mjs && node build.mjs && node build-pages.mjs && python3 -m http.server 8787 --directory public",
-    "check": "node extract.mjs && node check.mjs && node build.mjs && node build-pages.mjs"
+    "check": "node extract.mjs && node check.mjs && node build.mjs && node build-pages.mjs",
+    "stats": "node stats.mjs"
   },
-  "engines": { "node": ">=18" }
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "puppeteer-core": "^25.13.0"
+  }
 }

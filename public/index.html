@@ -71,6 +71,27 @@
 
 <section id="kiemelt" hidden aria-label="Kiemelt felhívás"></section>
 
+<section id="szavazas" hidden aria-label="Szavazati statisztika">
+  <div class="sec-head">
+    <div>
+      <h2 class="sec">Így szavaztok</h2>
+      <span class="hint">A témaszavazás nyilvános szavazatai – két különböző forrásból</span>
+    </div>
+  </div>
+  <div class="panel vote-block">
+    <h3>A 10 legtöbb szavazatot kapott téma</h3>
+    <span class="hint">A kozhang.hu nyilvános szavazati listája (automatikusan frissül)</span>
+    <div class="vt-list" id="vt-list"></div>
+    <p class="discl">Forrás: kozhang.hu – a szavazatszámok a közmédia-egyeztetés nyilvános adatai.</p>
+  </div>
+  <div class="panel vote-block">
+    <h3>Műsorötletek – így szavaztok</h3>
+    <span class="hint">Az élő ötlettár támogatásai – <b>utolsó böngészős frissítés</b> (a számlálók bejelentkezést igényelnek, ezért nem automatikus)</span>
+    <div class="vt-list" id="ot-list"></div>
+    <p class="discl">Forrás: kozhang.hu ötlettár – pillanatkép, manuálisan frissítve. Szavazz te is: <a href="https://kozhang.hu/egyeztetesek/kozmedia-2030/otletek" target="_blank" rel="noopener">kozhang.hu/…/otletek</a></p>
+  </div>
+</section>
+
 <section id="nyitott">
   <div class="sec-head">
     <div>
@@ -243,6 +264,7 @@ const EXT = `target="_blank" rel="noopener"`;
 let DATA = null;
 let PROMOS = [];
 let EVENTS = [];
+let OTLETEK = null;
 const state = { q:"", scope:"all", sort:"due", taxo:null, steps:null, chapter:null, kOpen:new Set() };
 
 // saját kattintás-analitika (localStorage) – a "dinamikus" viselkedés alapja
@@ -701,6 +723,32 @@ function renderPromo(){
   el.hidden = false;
 }
 
+function renderVote(){
+  const sec = $("szavazas"), vt = $("vt-list"), ot = $("ot-list");
+  if (!sec) return;
+  // 1) A bundle top-ötletei (automatikus, recommendations.json topIdeas)
+  const tops = DATA?.topIdeas?.ideas ?? [];
+  // 2) Az élő ötlettár pillanatképe (otletek.json – manuális)
+  const walls = OTLETEK?.topics ?? [];
+  const wallIdeas = walls.flatMap(w => w.ideas ?? []);
+  if (!tops.length && !wallIdeas.length){ sec.remove(); return; }
+  const maxOf = arr => Math.max(1, ...arr.map(x => x.support ?? x.supports ?? 0));
+  const row = (x, n, mx, key) => {
+    const s = x.support ?? x.supports ?? 0;
+    return `<div class="vt-row">
+      <span class="vt-n">${n}</span>
+      <span class="vt-t">${esc(x.title)}</span>
+      <span class="vt-bar"><i style="width:${Math.round(s/mx*100)}%"></i></span>
+      <span class="vt-s">${s.toLocaleString("hu-HU")}<em>${esc(key)}</em></span>
+    </div>`;
+  };
+  const mxT = maxOf(tops), mxO = maxOf(wallIdeas);
+  vt.innerHTML = tops.slice(0,10).map((x,i) => row(x, i+1, mxT, "szavazat")).join("");
+  ot.innerHTML = wallIdeas.slice(0,10).map((x,i) => row(x, i+1, mxO, "támogatás")).join("")
+    + (OTLETEK?.generatedAt ? `<p class="discl">Pillanatkép dátuma: ${esc(new Date(OTLETEK.generatedAt).toLocaleDateString("hu-HU"))}</p>` : "");
+  sec.hidden = false;
+}
+
 function renderCal(){
   const hint = $("calhint"), cal = $("cal"), list = $("evlist");
   const d0 = new Date();
@@ -757,11 +805,13 @@ function renderCal(){
   }
   try{ PROMOS = await (await fetch("./data/kiemelt.json")).json(); }catch{ PROMOS = []; }
   try{ EVENTS = await (await fetch("./data/esemenyek.json")).json(); }catch{ EVENTS = []; }
+  try{ OTLETEK = await (await fetch("./data/otletek.json")).json(); }catch{ OTLETEK = null; }
   readUrlState();
   renderHero();
   renderFeature();
   renderStats();
   renderPromo();
+  renderVote();
   renderCal();
   renderLists();
   renderCatPages();

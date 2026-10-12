@@ -153,6 +153,41 @@ function extractListing(src) {
 }
 
 /** JSON.parse(`...`) blokkok kinyerése. */
+/**
+ * A témaszavazás „top ötletek" listája a bundle-ből: az `ideas` tömb objektumokkal
+ * (id, title, description, categoryId, photo, support). Ez a NYILVÁNOS, beégetett
+ * szavazatszám – a honlapi „top szavazatok" szekció automatikus forrása. (Az élő
+ * ötlettár támogatásszámlálói Turnstile mögött vannak, külön pillanatképben.)
+ */
+function extractTopIdeas(chunks) {
+  for (const c of chunks) {
+    const i = c.text.indexOf('"ideas":[');
+    if (i < 0) continue;
+    const start = c.text.indexOf("[", i);
+    if (start < 0) continue;
+    let depth = 0, end = -1;
+    for (let p = start; p < c.text.length; p++) {
+      const ch = c.text[p];
+      if (ch === "[") depth++;
+      else if (ch === "]") { depth--; if (depth === 0) { end = p; break; } }
+    }
+    if (end < 0) continue;
+    try {
+      const arr = JSON.parse(c.text.slice(start, end + 1));
+      if (Array.isArray(arr) && arr.length && arr[0]?.support !== undefined) {
+        return {
+          title: c.text.match(/"topTopics":\{"title":"([^"]+)"/)?.[1] ?? null,
+          ideas: arr.map((x) => ({
+            id: x.id, title: x.title, description: x.description ?? null,
+            categoryId: x.categoryId ?? null, photo: x.photo ?? null, support: x.support ?? 0,
+          })),
+        };
+      }
+    } catch { /* nem ez a tömb – tovább */ }
+  }
+  return null;
+}
+
 function findJsonParseBlocks(src) {
   const out = [];
   const needle = "JSON.parse(`";
@@ -371,6 +406,14 @@ async function main() {
   }
   console.log(`videó-beszélők: ${media.length}`);
 
+  // 5b) Témaszavazás „top ötletek" (a bundle-be égetett nyilvános szavazatszámok)
+  const topIdeas = extractTopIdeas(chunks);
+  if (topIdeas) {
+    console.log(`top ötletek: ${topIdeas.ideas.length}  (${topIdeas.ideas.reduce((n, x) => n + x.support, 0)} szavazat)`);
+  } else {
+    console.warn("  ! nem találom a top ötletek tömbjét a bundle-ben");
+  }
+
   // 6) Képek valós ellenőrzése (a bundle `.jpg`-t ír, a szerver `.webp`-t ad)
   const photoRel = discussions.map((d) => d.photo).filter((p) => p && !p.includes("logo/"));
   const heroRel = discussions.map((d) => d.hero).filter(Boolean);
@@ -482,6 +525,7 @@ async function main() {
     })),
     taxonomy,
     media,
+    topIdeas,
   };
 
   if (DIAG) {

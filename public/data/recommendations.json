@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-12T12:17:54.988Z",
+  "generatedAt": "2026-10-12T21:47:22.416Z",
   "source": "https://kozhang.hu",
   "sourceBuild": "te-dxL7l",
   "counts": {
@@ -2958,5 +2958,74 @@
         }
       ]
     }
-  ]
+  ],
+  "topIdeas": {
+    "title": "A 10 legtöbb szavazatot kapott téma",
+    "ideas": [
+      {
+        "id": "idea-hungarian-scientists",
+        "title": "Magyar tudósok",
+        "description": "Ismeretterjesztő sorozat a magyar kutatók életéről és felfedezéseiről.",
+        "categoryId": "edu",
+        "photo": "kozhang/img/topics/science.jpg",
+        "support": 3248
+      },
+      {
+        "id": "idea-village-to-village",
+        "title": "Faluról falura",
+        "description": "Barangolás a vidéki Magyarországon – emberek, történetek, megoldások.",
+        "categoryId": "society",
+        "photo": "kozhang/img/category-hero/municipality.jpg",
+        "support": 2871
+      },
+      {
+        "id": "idea-ask-doctor",
+        "title": "Orvos válaszol",
+        "description": "Közérthető egészségügyi műsor kérdésekről és válaszokról.",
+        "categoryId": "edu",
+        "photo": "kozhang/img/topics/health.jpg",
+        "support": 1984
+      },
+      {
+        "id": "idea-startups",
+        "title": "Magyar startupok",
+        "description": "Bemutatjuk a legizgalmasabb magyar startupokat és ötleteiket.",
+        "categoryId": "edu",
+        "photo": "kozhang/img/topics/economy.jpg",
+        "support": 1733
+      },
+      {
+        "id": "idea-everyday-heroes",
+        "title": "A hétköznapi hősök",
+        "description": "Mindennapi emberek rendkívüli történetei a mi városainkból.",
+        "categoryId": "society",
+        "photo": "kozhang/img/topics/social-affairs.jpg",
+        "support": 1562
+      },
+      {
+        "id": "idea-bookmark-show",
+        "title": "Könyvjelző",
+        "description": "Könyvek, amik hatottak ránk – írók, olvasók, gondolatok.",
+        "categoryId": "culture",
+        "photo": "kozhang/img/topics/culture.jpg",
+        "support": 1145
+      },
+      {
+        "id": "idea-sport-for-all",
+        "title": "Sport mindenkinek",
+        "description": "Inspiráló sporttörténetek és tippek egy egészségesebb élethez.",
+        "categoryId": "fun",
+        "photo": "kozhang/img/topics/sport.jpg",
+        "support": 1021
+      },
+      {
+        "id": "idea-science-kids",
+        "title": "Tudomány gyerekeknek",
+        "description": "Játékos és izgalmas tudományos tartalmak a legfiatalabbaknak.",
+        "categoryId": "kids",
+        "photo": "kozhang/img/topics/education.jpg",
+        "support": 987
+      }
+    ]
+  }
 }
