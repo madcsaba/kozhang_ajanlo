@@ -1,162 +1,192 @@
 {
-  "generatedAt": "2026-10-12T21:03:53.628Z",
+  "generatedAt": "2026-10-12T22:16:29.380Z",
   "source": "kozhang.hu (valós böngésző, ötletfal)",
   "topics": [
     {
       "id": "kozmedia-2030",
       "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/otletek",
       "count": 30,
-      "total": 21838,
+      "total": 21694,
       "ideas": [
         {
           "title": "Miért",
           "supports": 1336,
+          "description": "Miért olyan a világ, amilyen? A műsor hétköznapi jelenségektől indulva vezet el a természet törvényeihez. Kísérletek, történetek és meglepő kérdések segítségével mutatja meg, hogy a tudomány nem tantárgy, hanem a világ megértésének egyik legizgalmasabb módja.",
           "category": "science"
         },
         {
           "title": "Emberséges Magyarország!",
           "supports": 1246,
+          "description": "Hogyan alakítjuk át életünket egy tényleg emberséges Magyarországgá. Riportok, élettörténetek, tudósítások.",
           "category": "family"
         },
         {
           "title": "Hegyen-völgyön",
           "supports": 1244,
+          "description": "Magyarország természeti értékei, túraötletek, turistaszállások bemutatása. Interjúk erdészekkel, helyi idősekkel, hagyományőrzőkkel. Természetjárással kapcsolatos programok, fesztiválok bemutatása. Túrakörök, klubok bemutatása. Jelvényszerző mozgalmakkal kapcsolatos információk.Geocaching bemutatása",
           "category": "transport"
         },
         {
           "title": "Hol tart ma a tudomány?",
           "supports": 1205,
+          "description": "Bármilyen területen az aktuális fejlemények bemutatása. Energiaszektor, orvostudományok, robotika, matematika, stb. Nem hírszerűen, hanem oktató jelleggel, az adott tudományterület témához kapcsolódó múltjának, jelenének, és potenciális jövőjének bemutatása mellett.",
           "category": "science"
         },
         {
           "title": "Rólunk szól",
           "supports": 1151,
+          "description": "Közérthetően mutatja be a hétköznapi embereket érintő fontos témákat, például pénzügyeket, egészséget, lakhatást, munkát és digitális világot, valódi szakértőkkel és hétköznapi történeteken keresztül.",
           "category": "municipality"
         },
         {
           "title": "Elemző",
           "supports": 1040,
+          "description": "Politikai elemzések, független profik által, lehetőleg egy jobb és egy baloldali elemző vitájával",
           "category": "public-media"
         },
         {
           "title": "Otthonod, a természet",
           "supports": 979,
+          "description": "Érzékenyítő témák annak elősegítésére, hogy az emberek a természet részének érezzék magukat, ne valami felsőbbrendű lénynek. Hogy alap legyen, hogy az utcán ugyanúgy nem dobja a földre a csikket, mint a nappalijában",
           "category": "climate"
         },
         {
           "title": "Orvos válaszol",
           "supports": 949,
+          "description": "Közérthető egészségügyi műsor kérdésekről és válaszokról.",
           "category": "health"
         },
         {
           "title": "Ablak",
           "supports": 921,
+          "description": "Mint régen, közérdekű, általános, mindenkinek.",
           "category": "family"
         },
         {
           "title": "Kölcsön kapott bolygó",
           "supports": 913,
+          "description": "A másor bemutatná a Föld kialakulását, korszakait és változásait az emberiség tevékenységének függvényében. Társadalmi edukáció arra, hogy mindenki megértse, hogy miért tartunk ott, ahol tartunk, és mindenkinek felelőssége van ebben.",
           "category": "climate"
         },
         {
           "title": "Hétköznapi hősök (inspiráló életutak)",
           "supports": 873,
+          "description": "Közöttünk élő hétköznapi emberekről, akik valamiben kiemelkedően jók, ügyesek vagy sikeresek. Hétköznapi emberek, akik megküzdöttek egy betegséggel és ezzel inspirálnak embereket. Hétköznapi segítők, akik pl. munkájuk által vagy jelenlétükkel, tudásukkal sok embert segítenek nap mint nap.",
           "category": "family"
         },
         {
           "title": "Alap gazdasági fogalmak",
           "supports": 861,
+          "description": "Legfontosabb, mindenki számára hasznos alapfogalmak, egyszerűen elmagyarázva:",
           "category": "economy"
         },
         {
           "title": "Magyar startupok",
           "supports": 837,
+          "description": "Bemutatjuk a legizgalmasabb magyar startupokat és ötleteiket.",
           "category": "economy"
         },
         {
           "title": "MaiDelta",
           "supports": 793,
+          "description": "A rége Delta új köntösben tudomány felsőfokon",
           "category": "science"
         },
         {
           "title": "A valóság",
           "supports": 788,
+          "description": "Gazdasági, külpolitikai, vidékfejlsztési, technológiai műsor, amiben rövidebb 5 - 10 percben bemutatott témákból (minden témakörből 1 - 1 minden nap) be van mutatva, ami a jövőt és a jelent érinto, 1-2 szakértő vitajaval -nézői vélemények összesitve AIval - ezek megjelennek a vitában reagalva.",
           "category": "economy"
         },
         {
           "title": "Nevessünk együtt!!!",
           "supports": 750,
+          "description": "Mindenkiről szólna ès a fő cèlja az lenne, hogy kicsit felszusszanjunk a nehèz, szűrke hètköznapok vègèn! Mert a nevetès, a jó kedv nagyon fontos! Ez olyan mint egy falat csoki, de ha naponta van ami becsempèsz az èletünkbe egy kis színt ès mókát, kacajt, az nem csak szimplán jó, de gyógyít is!!!",
           "category": "health"
         },
         {
           "title": "Kalandra fel!",
           "supports": 683,
+          "description": "Magyarország és a világ csodáit, sokszínűségét",
           "category": "transport"
         },
         {
           "title": "Sikeres magyarok",
           "supports": 681,
+          "description": "Olyan sikeres emberek személyes történeteit mutatná be a műsor, ami inspirálóan hatna a nézőkre. Bemutatni a küzdelmüket, nehézségeiket és hogy hogyan kerekedtek felül ezeket a nehézségeken. A cél, hogy ne csak a balsorst mutassuk be, hanem igenis legyenek a pozitív példák is bemutatva.",
           "category": "education"
         },
         {
           "title": "A gyerekek lélektana",
           "supports": 673,
+          "description": "Gyermekpszichológiai elemzések, tanácsok szülőknek, érzékeny gyerekkori témák és traumák feldolgozása",
           "category": "education"
         },
         {
           "title": "A kölcsön kapott föld.",
           "supports": 665,
+          "description": "Minden korosztályt okítani a környezet tudatosságra és takarékosságra. Pénzügyi edukáció. Környezet védelemet hogyan csináljuk és hogyan csinálják mások.",
           "category": "climate"
         },
         {
           "title": "Befektetési alapismeretek akár kis összeggel",
           "supports": 647,
+          "description": "Egy kis összegű befektetési műsor arról szóljon, hogyan növelheted a megtakarításaidat márhavi pár ezer forinttól. Lépésről lépésre mutatja be a kockázatkezelést, a diverzifikációt, az állampapírokat, ETF-eket és az alacsony díjú platformokat. Célja a pénzügyi tudatosság fejlesztése és a tévhitek el",
           "category": "economy"
         },
         {
           "title": "Vita klub",
           "supports": 622,
+          "description": "Bizonyos közéleti témákról behívni parlamenti képviselőket, vagy bárkit igazából, és értelmes keretek közötti vitát tartani.",
           "category": "public-media"
         },
         {
           "title": "Hogyan éled meg a demokráciát? Társadalmi kórkép.",
           "supports": 621,
+          "description": "Különböző társadalmi rétegekben tárnám fel a demokrácia (emberi jogok, alapjogok) megjelenési formáit, tartalmi elemeit, a megélt valóságot.",
           "category": "public-media"
         },
         {
           "title": "Színház az egész világ",
           "supports": 613,
+          "description": "Színházi előadás közvetítés, de bemutatva a kulisszatitkokat, alkotói folyamatot.",
           "category": "culture"
         },
         {
           "title": "Egy perc levegő",
           "supports": 598,
+          "description": "Mentális egészséggel, életvezetéssel, neveléssel, konfliktuskezeléssel, stresszcsökkentéssel, rezilienciával, öngyilkosság-prevencióval, segítségkérés-promócióval stb. foglalkozó rövid (interneten is klippezhető-megosztható) műsorok.",
           "category": "health"
         },
         {
-          "title": "A Nagy Kérdés",
-          "supports": 65,
-          "category": "culture"
-        },
-        {
-          "title": "filmarchívum",
-          "supports": 40,
-          "category": "culture"
-        },
-        {
-          "title": "Tudományosan az ismeretlenbe",
-          "supports": 32,
-          "category": "science"
-        },
-        {
-          "title": "Népfőiskola",
-          "supports": 12,
+          "title": "Eszmék/elmék csatája",
+          "supports": 5,
+          "description": "Két különböző álláspont facilitált megvitatása kulturált és tisztettudó hangnemben. Javaslom keressetek rá “Battle of Ideas” fesztivál - ezt lehetne tv műsornak átdolgozni.",
           "category": "education"
         },
         {
-          "title": "Magyarországi történések napról napra.",
+          "title": "Kortalan korszerűség",
           "supports": 0,
-          "category": "municipality"
+          "description": "Érthetően bemutatja a mindennapok korszerű vívmányait. Segít az idősebb korosztálynak eligazodni a modern dolgok között. Segít megérteni az alkalmazásukat. Felhívja a figyelmet a veszélyekre és segít elkerülni azokat.",
+          "category": "science"
+        },
+        {
+          "title": "Beszélgetés a mindennapok embereivel",
+          "supports": 0,
+          "description": "Egy-egy tématerületet kiválasztva, azon belül 2-3 embert megszólítva, adásokban beszélgetni az életéről. Értve ezalatt akár szellemi, akár fizikai szakterületet kiválasztva, bemutatni a tapasztalatokat. Ezeket a témaköröket \"vetésforgó\" rendszerében időről időre visszatérve forgatni.",
+          "category": "family"
+        },
+        {
+          "title": "A világ és ami mögötte van",
+          "supports": 0,
+          "description": "Beszélgetős műsor.Egészségügy,gazdaság, tudomány,kutatás.",
+          "category": "science"
+        },
+        {
+          "title": "éljünk vidáman gondtalanul",
+          "supports": 0,
+          "description": "Természetesen a vidám kabaré jellegű gondokat elűző műsorok,filmek.",
+          "category": "culture"
         }
       ]
     }

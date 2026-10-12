@@ -81,9 +81,11 @@ async function scrapeWall(browser, url) {
           (e) => e.children.length === 0 && /\d/.test(e.textContent) && /támogat/i.test(e.textContent),
         );
         const supports = cnt ? parseInt(cnt.textContent.replace(/\D/g, ""), 10) || 0 : 0;
+        const pEl = c.querySelector("p");
+        const description = pEl ? clean(pEl.textContent) : null;
         const prev = seen.get(title);
         if (!prev || supports > prev.supports)
-          seen.set(title, { title, supports, category: c.getAttribute("data-category") || null });
+          seen.set(title, { title, supports, description, category: c.getAttribute("data-category") || null });
       }
       return [...seen.values()].sort((a, b) => b.supports - a.supports);
     });

@@ -75,20 +75,27 @@
   <div class="sec-head">
     <div>
       <h2 class="sec">Így szavaztok</h2>
-      <span class="hint">A témaszavazás nyilvános szavazatai – két különböző forrásból</span>
+      <span class="hint">A nyilvános szavazatok állapota a kozhang.hu-n</span>
     </div>
   </div>
+  <p class="vote-lead">A <b>Közhang</b> nyilvános egyeztetést tart arról, milyen közmédiát szeretnénk 2030-ban. A közönség két helyen szavaz: <b>témákról</b> (miről legyen a következő társadalmi egyeztetés) és <b>műsorötletekről</b> (mit látnál szívesen a képernyőn). Itt azt mutatjuk, mit mondanak erről a számok.</p>
   <div class="panel vote-block">
-    <h3>A 10 legtöbb szavazatot kapott téma</h3>
-    <span class="hint">A kozhang.hu nyilvános szavazati listája (automatikusan frissül)</span>
+    <h3>Miről legyen a következő egyeztetés?</h3>
+    <p class="vote-exp">A témaszavazáson mindenki eldöntheti, miről tárgyaljon a közösség a jövőben: legfeljebb 10 témára adhat le szavazatot. A listán azok a témák szerepelnek, amelyek eddig a legtöbb szavazatot kapták.</p>
     <div class="vt-list" id="vt-list"></div>
-    <p class="discl">Forrás: kozhang.hu – a szavazatszámok a közmédia-egyeztetés nyilvános adatai.</p>
+    <div class="acts">
+      <a class="btn primary" href="https://kozhang.hu/temaszavazas" target="_blank" rel="noopener">Szavazz te is a témákra <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    </div>
+    <p class="discl">Forrás: kozhang.hu nyilvános szavazati listája – automatikusan frissül.</p>
   </div>
   <div class="panel vote-block">
-    <h3>Műsorötletek – így szavaztok</h3>
-    <span class="hint">Az élő ötlettár támogatásai – <b>utolsó böngészős frissítés</b> (a számlálók bejelentkezést igényelnek, ezért nem automatikus)</span>
+    <h3>Milyen műsort látnál szívesen?</h3>
+    <p class="vote-exp">A közmédia-egyeztetés ötlettárában bárki beküldhet műsorötletet, másokét pedig támogatással erősítheti – „a legtámogatottabb ötletek nyilvánosságot kapnak, és meg is valósulhatnak”. Böngészni bárkinek szabad, támogatni csak belépve lehet.</p>
     <div class="vt-list" id="ot-list"></div>
-    <p class="discl">Forrás: kozhang.hu ötlettár – pillanatkép, manuálisan frissítve. Szavazz te is: <a href="https://kozhang.hu/egyeztetesek/kozmedia-2030/otletek" target="_blank" rel="noopener">kozhang.hu/…/otletek</a></p>
+    <div class="acts">
+      <a class="btn primary" href="https://kozhang.hu/egyeztetesek/kozmedia-2030/otletek" target="_blank" rel="noopener">Nézd meg az ötlettárat <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    </div>
+    <p class="discl">Forrás: kozhang.hu ötlettár – pillanatkép, manuálisan frissítve (a számlálókhoz bejelentkezés kell, ezért nem automatikus).</p>
   </div>
 </section>
 
@@ -735,17 +742,31 @@ function renderVote(){
   const maxOf = arr => Math.max(1, ...arr.map(x => x.support ?? x.supports ?? 0));
   const row = (x, n, mx, key) => {
     const s = x.support ?? x.supports ?? 0;
-    return `<div class="vt-row">
+    const hasDesc = !!x.description;
+    return `<div class="vt-row${hasDesc ? " vt-hasdesc" : ""}"${hasDesc ? ` tabindex="0" role="button" aria-expanded="false"` : ""}>
       <span class="vt-n">${n}</span>
       <span class="vt-t">${esc(x.title)}</span>
       <span class="vt-bar"><i style="width:${Math.round(s/mx*100)}%"></i></span>
       <span class="vt-s">${s.toLocaleString("hu-HU")}<em>${esc(key)}</em></span>
+      ${hasDesc ? `<span class="vt-d">${esc(x.description)}</span>` : ""}
     </div>`;
   };
   const mxT = maxOf(tops), mxO = maxOf(wallIdeas);
   vt.innerHTML = tops.slice(0,10).map((x,i) => row(x, i+1, mxT, "szavazat")).join("");
   ot.innerHTML = wallIdeas.slice(0,10).map((x,i) => row(x, i+1, mxO, "támogatás")).join("")
     + (OTLETEK?.generatedAt ? `<p class="discl">Pillanatkép dátuma: ${esc(new Date(OTLETEK.generatedAt).toLocaleDateString("hu-HU"))}</p>` : "");
+  // Leírás lenyitása
+  const toggle = e => {
+    const r = e.target.closest(".vt-hasdesc");
+    if (!r) return;
+    const open = r.classList.toggle("open");
+    r.setAttribute("aria-expanded", open);
+  };
+  vt.addEventListener("click", toggle);
+  ot.addEventListener("click", toggle);
+  const toggleKey = e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(e); } };
+  vt.addEventListener("keydown", toggleKey);
+  ot.addEventListener("keydown", toggleKey);
   sec.hidden = false;
 }
 
