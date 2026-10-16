@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-15T09:17:55.618Z",
+  "generatedAt": "2026-10-16T09:11:18.978Z",
   "source": "https://kozhang.hu",
-  "sourceBuild": "C6BYw4x-",
+  "sourceBuild": "H_D1hqVB",
   "counts": {
     "discussions": 16,
     "open": 3,
@@ -9,7 +9,7 @@
     "knowledge": 19,
     "taxonomyTopics": 12,
     "taxonomySubtopics": 120,
-    "questions": 97,
+    "questions": 107,
     "mediaSpeakers": 8
   },
   "categories": {
@@ -147,11 +147,11 @@
           },
           "minutes": 12,
           "unlocksAt": "2026-10-21T07:00:00",
-          "stepCount": 0
+          "stepCount": 10
         }
       ],
       "chapterCount": 10,
-      "stepCount": 76,
+      "stepCount": 86,
       "totalMinutes": 143,
       "knowledgeCount": 0,
       "knowledgeIds": [],
@@ -839,6 +839,96 @@
           "chapter": "Hitelesség, pártatlanság és függetlenség",
           "chapterIndex": 8,
           "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/osszegzes-hiradas"
+        },
+        {
+          "id": "platformok-hozzaferes",
+          "title": "Tartalmak, platformok és digitális hozzáférés",
+          "kind": "video",
+          "minutes": 1,
+          "chapter": "Tartalmak, platformok és digitális hozzáférés",
+          "chapterIndex": 9,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/platformok-hozzaferes"
+        },
+        {
+          "id": "hol-talalkozol-a-kozmediaval",
+          "title": "Te hol találkozol a közmédiával?",
+          "kind": "question",
+          "minutes": 1,
+          "chapter": "Tartalmak, platformok és digitális hozzáférés",
+          "chapterIndex": 9,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/hol-talalkozol-a-kozmediaval"
+        },
+        {
+          "id": "mediafogyasztas-egy-napon",
+          "title": "Médiafogyasztás egy átlagos napon",
+          "kind": "question",
+          "minutes": 1,
+          "chapter": "Tartalmak, platformok és digitális hozzáférés",
+          "chapterIndex": 9,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/mediafogyasztas-egy-napon"
+        },
+        {
+          "id": "hol-szeretnel-hozzaferni",
+          "title": "Hol szeretnél hozzáférni a közmédia tartalmaihoz?",
+          "kind": "question",
+          "minutes": 1,
+          "chapter": "Tartalmak, platformok és digitális hozzáférés",
+          "chapterIndex": 9,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/hol-szeretnel-hozzaferni"
+        },
+        {
+          "id": "a-te-musorprogramod",
+          "title": "A te műsorprogramod",
+          "kind": "question",
+          "minutes": 3,
+          "chapter": "Tartalmak, platformok és digitális hozzáférés",
+          "chapterIndex": 9,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/a-te-musorprogramod"
+        },
+        {
+          "id": "reklamok-a-kozmediaban",
+          "title": "Reklámok a közmédiában",
+          "kind": "question",
+          "minutes": 1,
+          "chapter": "Tartalmak, platformok és digitális hozzáférés",
+          "chapterIndex": 9,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/reklamok-a-kozmediaban"
+        },
+        {
+          "id": "kepzeljuk-el-a-jovot",
+          "title": "Képzeljük el a jövőt…",
+          "kind": "question",
+          "minutes": 1,
+          "chapter": "Tartalmak, platformok és digitális hozzáférés",
+          "chapterIndex": 9,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/kepzeljuk-el-a-jovot"
+        },
+        {
+          "id": "fiatalok-elerese",
+          "title": "Hogyan érhetné el a fiatalokat?",
+          "kind": "question",
+          "minutes": 1,
+          "chapter": "Tartalmak, platformok és digitális hozzáférés",
+          "chapterIndex": 9,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/fiatalok-elerese"
+        },
+        {
+          "id": "kozmedia-2030-ban",
+          "title": "Milyen legyen a közmédia 2030-ban?",
+          "kind": "question",
+          "minutes": 2,
+          "chapter": "Tartalmak, platformok és digitális hozzáférés",
+          "chapterIndex": 9,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/kozmedia-2030-ban"
+        },
+        {
+          "id": "osszegzes-platformok",
+          "title": "Összegzés",
+          "kind": "infographic",
+          "minutes": 0,
+          "chapter": "Tartalmak, platformok és digitális hozzáférés",
+          "chapterIndex": 9,
+          "url": "https://kozhang.hu/egyeztetesek/kozmedia-2030/lepes/osszegzes-platformok"
         }
       ],
       "mediaCount": 8,
