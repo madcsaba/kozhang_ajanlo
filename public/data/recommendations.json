@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-10-16T09:11:18.978Z",
+  "generatedAt": "2026-10-18T08:58:58.827Z",
   "source": "https://kozhang.hu",
-  "sourceBuild": "H_D1hqVB",
+  "sourceBuild": "B5c-Twvj",
   "counts": {
     "discussions": 16,
     "open": 3,
@@ -914,7 +914,7 @@
         },
         {
           "id": "kozmedia-2030-ban",
-          "title": "Milyen legyen a közmédia 2030-ban?",
+          "title": "A ti hangotok",
           "kind": "question",
           "minutes": 2,
           "chapter": "Tartalmak, platformok és digitális hozzáférés",
