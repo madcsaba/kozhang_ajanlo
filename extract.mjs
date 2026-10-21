@@ -142,14 +142,38 @@ async function discoverAssets() {
   };
 }
 
-/** `Lo=[{id:`…`}]` tömb kinyerése (a 16 egyeztetés listája). */
-function extractListing(src) {
-  const decl = src.match(/=\[\{id:/);
-  if (!decl) throw new Error("Nem találom az egyeztetés-tömböt.");
-  const open = decl.index + decl[0].indexOf("[");
-  const close = bracket(src, open);
-  if (close < 0) throw new Error("Az egyeztetés-tömb zárójele nem található.");
-  return evalLiteral(src.slice(open, close + 1), "Lo tömb");
+/**
+ * Az egyeztetés-lista kinyerése: `Vo=[{id:`…`}]` formájú tömb (a minifikálás
+ * minden buildnél átnevezi: Lo → Vo …), és az index-bundle-ban más `=[{id:`
+ * tömbök is szerepelnek elébe rakva (pl. social-ikonok `Glyph:Fp` külső
+ * hivatkozással, onboarding-dobozok). Ezért MINDEN chunk minden jelöltjét
+ * végigpróbáljuk: a szeletnek tartalmaznia kell `participants:`-t, kiértékelő
+ * és formailag is illőnek (id + résztvevő-szám) kell lennie.
+ * Visszatérés: { discussions, chunk }.
+ */
+function extractListing(chunks) {
+  const attempts = [];
+  for (const c of chunks) {
+    for (const decl of c.text.matchAll(/=\[\{id:/g)) {
+      const open = decl.index + decl[0].indexOf("[");
+      const close = bracket(c.text, open);
+      if (close < 0) { attempts.push(`${c.name}@${decl.index}: nincs zárójel`); continue; }
+      const raw = c.text.slice(open, close + 1);
+      if (!/\bparticipants:\s*\d+/.test(raw)) continue; // nem az egyeztetés-lista
+      let arr;
+      try { arr = evalLiteral(raw, `egyeztetés-tömb (${c.name})`); }
+      catch (e) { attempts.push(`${c.name}@${decl.index}: ${e.message}`); continue; }
+      const ok =
+        Array.isArray(arr) && arr.length > 3 &&
+        arr.every((d) => d && typeof d.id === "string") &&
+        arr.filter((d) => typeof d.participants === "number").length >= arr.length / 2;
+      if (ok) return { discussions: arr, chunk: c.name };
+      attempts.push(`${c.name}@${decl.index}: formailag nem illik (${Array.isArray(arr) ? arr.length + " elem" : typeof arr})`);
+    }
+  }
+  throw new Error(
+    `Nem találom az egyeztetés-tömböt. Próbálkozások: ${attempts.join("; ") || "nincs jelölt"}`,
+  );
 }
 
 /** JSON.parse(`...`) blokkok kinyerése. */
@@ -334,10 +358,8 @@ async function main() {
   console.log(`betöltve: ${chunks.length} bundle`);
 
   // 1) Egyeztetések
-  const discChunk = chunks.find((c) => /\bparticipants:\s*\d+/.test(c.text) && c.text.includes("=[{id:"));
-  if (!discChunk) throw new Error("Nem találom az egyeztetés-tömböt.");
-  const discussions = extractListing(discChunk.text);
-  console.log(`egyeztetések: ${discussions.length}  (${discChunk.name})`);
+  const { discussions, chunk: discChunkName } = extractListing(chunks);
+  console.log(`egyeztetések: ${discussions.length}  (${discChunkName})`);
 
   // 2) Részletes objektumok: fejezetek + kérdés-lista (csak a nyitottaknak van)
   const detailChunk = chunks.find((c) => c.text.includes("chapters:["));
