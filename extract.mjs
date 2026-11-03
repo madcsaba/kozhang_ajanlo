@@ -99,6 +99,181 @@ function evalLiteral(code, what) {
   }
 }
 
+// ---------- szabad azonosítók feloldása (minifikátor kiemelt változóira) ----------
+// A minifikátor a gyakran ismétlődő objektumokat `var X={...}` alakban kiemeli, és a
+// listában csupasz `X` elemként hivatkozik rá (pl. `as=[{...},is,{id:...}]`). Ezeket a
+// chunk-ban lévő deklarációjukból oldjuk fel, mielőtt kiértékelnénk a tömböt.
+
+const KEYWORDS = new Set(("true false null undefined NaN Infinity this super new typeof void delete " +
+  "in of case do else for if while with try catch finally return break continue switch throw " +
+  "yield await async function class extends import export default instanceof var let const").split(" "));
+
+/** Stringek/template-ek tartalmának kitakarása (hosszmegőrző), hogy a keresés ne lásson bele. */
+function maskStrings(code) {
+  let out = "", i = 0;
+  while (i < code.length) {
+    const c = code[i];
+    if (c === "'" || c === '"' || c === "`") {
+      out += c; i++;
+      while (i < code.length) {
+        if (code[i] === "\\") { out += "  "; i += 2; continue; }
+        if (code[i] === c) { out += c; i++; break; }
+        out += " "; i++;
+      }
+      continue;
+    }
+    out += c; i++;
+  }
+  return out;
+}
+
+/** Érték-helyzetben lévő szabad azonosítók (nem kulcs, nem tag, nem hívás). */
+function valueIdentifiers(code) {
+  const m = maskStrings(code);
+  const found = new Set();
+  let i = 0;
+  while (i < m.length) {
+    const c = m[i];
+    if (c === "/" && m[i + 1] === "/") { while (i < m.length && m[i] !== "\n") i++; continue; }
+    if (c === "/" && m[i + 1] === "*") { i += 2; while (i < m.length && !(m[i] === "*" && m[i + 1] === "/")) i++; i += 2; continue; }
+    if (/[A-Za-z_$]/.test(c)) {
+      let j = i;
+      while (j < m.length && /[A-Za-z0-9_$]/.test(m[j])) j++;
+      const name = m.slice(i, j);
+      let p = i - 1; while (p >= 0 && /\s/.test(m[p])) p--;
+      let q = j;     while (q < m.length && /\s/.test(m[q])) q++;
+      const prev = p >= 0 ? m[p] : "";
+      const next = q < m.length ? m[q] : "";
+      const prevIsKw = p >= 0 && /\b(return|typeof|case|void|delete|in|of|new|yield|await|throw|instanceof)\s*$/.test(m.slice(0, p + 1));
+      const valuePos = p < 0 || prevIsKw || [":", ",", "[", "(", "{", "=", ";"].includes(prev);
+      const notRef = next !== ":" && next !== "(" && next !== "." && next !== "=";
+      if (valuePos && notRef && !KEYWORDS.has(name)) found.add(name);
+      i = j; continue;
+    }
+    i++;
+  }
+  return [...found];
+}
+
+/** A chunk-ban `name=` értékadás keresése; visszatérés: az '=' utáni pozíció, vagy -1. */
+function findDecl(src, name) {
+  const re = new RegExp(`(?<![A-Za-z0-9_$])${name.replace(/\$/g, "\\$")}(?![A-Za-z0-9_$])\\s*=(?!=)`);
+  const m = re.exec(src);
+  return m ? m.index + m[0].length : -1;
+}
+
+/** Az '=' utáni érték-literal kinyerése (objektum/tömb/string/szám/boolean). */
+function literalAt(src, idx) {
+  let k = idx;
+  while (k < src.length && /\s/.test(src[k])) k++;
+  const c = src[k];
+  if (c === "{" || c === "[") {
+    const close = bracket(src, k);
+    return close < 0 ? null : src.slice(k, close + 1);
+  }
+  if (c === "'" || c === '"' || c === "`") {
+    let j = k + 1;
+    while (j < src.length) {
+      if (src[j] === "\\") { j += 2; continue; }
+      if (src[j] === c) return src.slice(k, j + 1);
+      j++;
+    }
+    return null;
+  }
+  const m = src.slice(k).match(/^(?:-?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?|0[xX][0-9a-fA-F]+|true|false|null|undefined|NaN|Infinity)/);
+  return m ? m[0] : null;
+}
+
+/** Nem oldandó beépített értékek (a Function globális scope-ja amúgy is adja őket). */
+const GLOBAL_OK = new Set(("Math JSON Number String Boolean Array Object Date RegExp parseInt parseFloat " +
+  "isNaN isFinite Infinity NaN undefined Symbol BigInt Map Set WeakMap WeakSet Promise Intl").split(" "));
+
+/**
+ * A scope-ban feloldhatatlan, nem beépített érték-helyzetű azonosítókat `void 0`-ra
+ * cseréli (stringeken/kommenteken kívül). Így a minifikátor számított értékei (pl.
+ * `So=tt()==='web'?dátum:void 0`) nem viszik el a teljes kiértékelést — a mező egyszerűen
+ * undefined lesz, a formai validáció (id + participants) így is ellenőrzi a helyességet.
+ */
+function rewriteUnresolved(code, scope) {
+  let out = "", i = 0;
+  const n = code.length;
+  while (i < n) {
+    const c = code[i];
+    if (c === "'" || c === '"' || c === "`") {
+      const start = i, q = c; i++;
+      while (i < n) {
+        if (code[i] === "\\") { i += 2; continue; }
+        if (code[i] === q) { i++; break; }
+        i++;
+      }
+      out += code.slice(start, i); continue;
+    }
+    if (c === "/" && code[i + 1] === "/") { const s = i; while (i < n && code[i] !== "\n") i++; out += code.slice(s, i); continue; }
+    if (c === "/" && code[i + 1] === "*") { const s = i; i += 2; while (i < n && !(code[i] === "*" && code[i + 1] === "/")) i++; i += 2; out += code.slice(s, i); continue; }
+    if (/[A-Za-z_$]/.test(c)) {
+      const s = i;
+      while (i < n && /[A-Za-z0-9_$]/.test(code[i])) i++;
+      const name = code.slice(s, i);
+      let p = s - 1; while (p >= 0 && /\s/.test(code[p])) p--;
+      let q2 = i; while (q2 < n && /\s/.test(code[q2])) q2++;
+      const prev = p >= 0 ? code[p] : "";
+      const next = q2 < n ? code[q2] : "";
+      const prevIsKw = p >= 0 && /\b(return|typeof|case|void|delete|in|of|new|yield|await|throw|instanceof)\s*$/.test(code.slice(0, p + 1));
+      const valuePos = p < 0 || prevIsKw || [":", ",", "[", "(", "{", "=", ";"].includes(prev);
+      const notRef = next !== ":" && next !== "(" && next !== "." && next !== "=";
+      const unresolved = valuePos && notRef && !KEYWORDS.has(name) && !GLOBAL_OK.has(name) && !scope.has(name);
+      out += unresolved ? "void 0" : name;
+      continue;
+    }
+    out += c; i++;
+  }
+  return out;
+}
+
+/** Scope-beli értékekkel kiértékel; a feloldhatatlan azonosítók `void 0`-ra cserélve. */
+function evalWithScope(code, scope) {
+  const src = rewriteUnresolved(code, scope);
+  const keys = [...scope.keys()], vals = [...scope.values()];
+  return new Function(...keys, `"use strict";return (${src});`)(...vals);
+}
+
+/** A szabad azonosítókat a chunk-beli deklarációikból értékké oldja (rekurzívan). */
+function buildScope(chunk, names) {
+  const scope = new Map();
+  const stack = new Set();
+  const resolve = (name) => {
+    if (scope.has(name) || stack.has(name) || GLOBAL_OK.has(name)) return;
+    stack.add(name);
+    try {
+      const at = findDecl(chunk, name);
+      if (at < 0) return;
+      const lit = literalAt(chunk, at);
+      if (!lit) return;
+      if (SUSPICION.test(lit)) throw new Error(`Gyanús token a(z) "${name}" deklarációjában — kiértékelés megtagadva.`);
+      for (const sub of valueIdentifiers(lit)) resolve(sub);
+      scope.set(name, evalWithScope(lit, scope));
+    } finally {
+      stack.delete(name);
+    }
+  };
+  for (const n of names) resolve(n);
+  return scope;
+}
+
+/** Kiértékelés a chunk-beli változók feloldásával; a feloldhatatlan azonosító `void 0`. */
+function evalScoped(code, chunk, what) {
+  if (SUSPICION.test(code)) {
+    throw new Error(`Gyanús token a(z) "${what}" literalban — kiértékelés megtagadva.`);
+  }
+  const free = valueIdentifiers(code).filter((n) => !GLOBAL_OK.has(n));
+  const scope = buildScope(chunk, free);
+  try {
+    return evalWithScope(code, scope);
+  } catch (e) {
+    throw new Error(`Nem sikerült kiértékelni a(z) "${what}" literalot: ${e.message}`);
+  }
+}
+
 async function mapLimit(items, limit, fn) {
   const out = new Array(items.length);
   let i = 0;
@@ -161,7 +336,7 @@ function extractListing(chunks) {
       const raw = c.text.slice(open, close + 1);
       if (!/\bparticipants:\s*\d+/.test(raw)) continue; // nem az egyeztetés-lista
       let arr;
-      try { arr = evalLiteral(raw, `egyeztetés-tömb (${c.name})`); }
+      try { arr = evalScoped(raw, c.text, `egyeztetés-tömb (${c.name})`); }
       catch (e) { attempts.push(`${c.name}@${decl.index}: ${e.message}`); continue; }
       const ok =
         Array.isArray(arr) && arr.length > 3 &&

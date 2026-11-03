@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-11-02T12:45:09.846Z",
+  "generatedAt": "2026-11-03T14:37:40.989Z",
   "source": "https://kozhang.hu",
-  "sourceBuild": "DerpnJ8k",
+  "sourceBuild": "D_EI94mt",
   "counts": {
-    "discussions": 16,
-    "open": 3,
+    "discussions": 17,
+    "open": 4,
     "soon": 13,
     "knowledge": 19,
     "taxonomyTopics": 12,
@@ -19,6 +19,7 @@
     "digital": 1,
     "economy": 3,
     "municipality": 5,
+    "legislation": 1,
     "climate": 2
   },
   "discussions": [
@@ -1375,6 +1376,44 @@
       "url": "https://kozhang.hu/egyeztetesek/palatinus-to",
       "ideasUrl": "https://kozhang.hu/egyeztetesek/palatinus-to/otletek",
       "firstSeen": "2026-10-01T20:25:20.034Z"
+    },
+    {
+      "id": "memi-tarsadalmi-reszvetel",
+      "title": {
+        "en": "MEMI – a new institution for public participation",
+        "hu": "MEMI – egy új intézmény a társadalmi részvételért"
+      },
+      "description": {
+        "en": "Learn about the goals and tasks of the Institute for a Functioning and Humane Hungary and the draft law on setting it up, then tell us what you think.",
+        "hu": "Ismerd meg a Működő és Emberséges Magyarország Intézet céljait, feladatait és a létrehozásáról szóló törvénytervezetet, majd mondd el a véleményedet."
+      },
+      "lead": {
+        "en": "Learn about the goals and tasks of the Institute for a Functioning and Humane Hungary and the draft law on setting it up, then tell us what you think.",
+        "hu": "Ismerd meg a Működő és Emberséges Magyarország Intézet céljait, feladatait és a létrehozásáról szóló törvénytervezetet, majd mondd el a véleményedet."
+      },
+      "category": "legislation",
+      "scope": "national",
+      "status": "open",
+      "locality": null,
+      "participants": 0,
+      "completionRate": 0,
+      "daysLeft": 30,
+      "opensAt": null,
+      "badgeStyle": null,
+      "brand": false,
+      "photo": "https://kozhang.hu/kozhang/img/webapp/discussion-memi.webp",
+      "hero": "https://kozhang.hu/kozhang/img/webapp/discussion-hero-memi.webp",
+      "chapters": [],
+      "chapterCount": 0,
+      "stepCount": 0,
+      "totalMinutes": 0,
+      "knowledgeCount": 0,
+      "knowledgeIds": [],
+      "questions": [],
+      "mediaCount": 0,
+      "url": "https://kozhang.hu/egyeztetesek/memi-tarsadalmi-reszvetel",
+      "ideasUrl": "https://kozhang.hu/egyeztetesek/memi-tarsadalmi-reszvetel/otletek",
+      "firstSeen": "2026-11-03T14:37:40.989Z"
     },
     {
       "id": "rovid-tavu-lakaskiadas",
