@@ -22,7 +22,7 @@ const FILE = path.join(HERE, "public", "data", "recommendations.json");
 const CATS = new Set([
   "public-media", "culture", "transport", "digital", "economy",
   "municipality", "climate", "environment", "health", "education",
-  "family", "living", "safety", "society",
+  "family", "living", "safety", "society", "legislation",
 ]);
 
 const problems = [];

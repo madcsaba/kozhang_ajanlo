@@ -69,6 +69,10 @@ const CATS = {
     label: "Klíma és környezet",
     intro: "Vizek minősége, tópartok, környezetvédelem — a klíma- és természetvédelmi témák most dőlnek el, amikor még van rá idő. Ha fontos neked a környezeted, itt szavazhatsz a megőrzéséről.",
   },
+  "legislation": {
+    label: "Jogszabályozás",
+    intro: "Új intézmények, törvénytervezetek és a szabályok, amelyek alakítják a közös életünket. A jogszabályokról szóló egyeztetésekben a véleményed akkor számít, amikor még van rá idő — szólj hozzá, mielőtt véglegessé válnak.",
+  },
 };
 
 // ————————————————————————————————————————————————————————— súgók
