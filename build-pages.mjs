@@ -126,6 +126,8 @@ function topicPage(d) {
   if (d.stepCount) stats.push(`<span><b>${d.stepCount}</b> lépés</span>`);
   if (d.totalMinutes) stats.push(`<span>kb. <b>${d.totalMinutes}</b> perc</span>`);
   if (d.opensAt) stats.push(`<span>nyílt: <b>${esc(huDate(d.opensAt))}</b></span>`);
+  if (d.closesAt) stats.push(`<span>lezárult: <b>${esc(huDate(d.closesAt))}</b></span>`);
+  if (d.resultsAt) stats.push(`<span>eredmények: <b>${esc(huDate(d.resultsAt))}</b></span>`);
 
   // a már megnyílt (elmúlt) fejezetnél ne mutassuk a „nyílik:” feliratot
   const nowLocal = new Date(Date.now() - new Date().getTimezoneOffset() * 6e4).toISOString().slice(0, 19);
@@ -306,9 +308,11 @@ document.getElementById("share").addEventListener("click", async (e) => {
 const events = [];
 for (const d of discussions) {
   const title = hu(d.title);
+  // a téma aktuális állapota a címben – a lezártonál már nem "Hamarosan"
+  const stateTxt = d.status === "open" ? "Nyitott" : d.status === "soon" ? "Hamarosan" : "Lezárult";
   events.push({
     kind: "new", id: `tema:${d.id}`, when: firstSeen(d), page: `${SITE}/tema/${d.id}/`, d,
-    title: `${d.status === "open" ? "Nyitott" : "Hamarosan"}: ${title}`,
+    title: `${stateTxt}: ${title}`,
     summary: hu(d.description),
   });
   if (d.opensAt) {
@@ -316,6 +320,20 @@ for (const d of discussions) {
       kind: "open", id: `nyitas:${d.id}`, local: local(d.opensAt), when: budapestToIso(d.opensAt),
       page: `${SITE}/tema/${d.id}/`, d,
       title: `Megnyílt: ${title}`, summary: hu(d.description),
+    });
+  }
+  if (d.closesAt) {
+    events.push({
+      kind: "close", id: `zaras:${d.id}`, local: local(d.closesAt), when: budapestToIso(d.closesAt),
+      page: `${SITE}/tema/${d.id}/`, d,
+      title: `Lezárul: ${title}`, summary: hu(d.description),
+    });
+  }
+  if (d.resultsAt) {
+    events.push({
+      kind: "results", id: `eredmeny:${d.id}`, local: local(d.resultsAt), when: budapestToIso(d.resultsAt),
+      page: `${SITE}/tema/${d.id}/`, d,
+      title: `Eredmények: ${title}`, summary: hu(d.description),
     });
   }
   for (const ch of d.chapters) {

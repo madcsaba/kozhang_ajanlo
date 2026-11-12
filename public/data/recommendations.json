@@ -1,15 +1,16 @@
 {
-  "generatedAt": "2026-11-12T13:04:13.542Z",
+  "generatedAt": "2026-11-12T20:31:04.616Z",
   "source": "https://kozhang.hu",
   "sourceBuild": "CxmwYcSk",
   "counts": {
     "discussions": 12,
-    "open": 4,
+    "open": 1,
     "soon": 8,
+    "closed": 3,
     "knowledge": 19,
     "taxonomyTopics": 12,
     "taxonomySubtopics": 120,
-    "questions": 183,
+    "questions": 113,
     "mediaSpeakers": 8
   },
   "categories": {
@@ -38,12 +39,14 @@
       },
       "category": "public-media",
       "scope": "national",
-      "status": "open",
+      "status": "closed",
       "locality": null,
       "participants": 32457,
       "completionRate": 62,
-      "daysLeft": 14,
+      "daysLeft": 0,
       "opensAt": null,
+      "closesAt": "2026-11-02T00:00:00",
+      "resultsAt": "2026-11-21T07:00:00",
       "badgeStyle": null,
       "brand": false,
       "photo": "https://kozhang.hu/kozhang/img/topics/media.webp",
@@ -958,6 +961,8 @@
       "completionRate": 0,
       "daysLeft": 11,
       "opensAt": null,
+      "closesAt": null,
+      "resultsAt": null,
       "badgeStyle": null,
       "brand": false,
       "photo": "https://kozhang.hu/kozhang/img/topics/culture.webp",
@@ -996,6 +1001,8 @@
       "completionRate": 0,
       "daysLeft": 18,
       "opensAt": null,
+      "closesAt": null,
+      "resultsAt": null,
       "badgeStyle": null,
       "brand": false,
       "photo": "https://kozhang.hu/kozhang/img/topics/transport.webp",
@@ -1034,6 +1041,8 @@
       "completionRate": 34,
       "daysLeft": 20,
       "opensAt": "2026-09-15T07:00:00",
+      "closesAt": null,
+      "resultsAt": null,
       "badgeStyle": "heart",
       "brand": true,
       "photo": null,
@@ -1042,883 +1051,109 @@
         {
           "index": 0,
           "title": {
-            "hu": "A közmédia küldetése",
-            "en": "The mission of public media"
+            "en": "What should Közhang be like?",
+            "hu": "Milyen legyen a Közhang?"
           },
-          "minutes": 19,
+          "minutes": 27,
           "unlocksAt": null,
-          "stepCount": 8
-        },
-        {
-          "index": 1,
-          "title": {
-            "hu": "A közszolgálatiság jelentése és társadalmi értéke",
-            "en": "The meaning and social value of public service"
-          },
-          "minutes": 23,
-          "unlocksAt": "2026-09-07T07:00:00",
-          "stepCount": 8
-        },
-        {
-          "index": 2,
-          "title": {
-            "hu": "Milyen tartalmak hiányoznak a közmédiából?",
-            "en": "What content is missing from public media?"
-          },
-          "minutes": 12,
-          "unlocksAt": "2026-09-14T06:30:00",
-          "stepCount": 9
-        },
-        {
-          "index": 3,
-          "title": {
-            "hu": "A különböző generációk közmédiája",
-            "en": "Public media for different generations"
-          },
-          "minutes": 13,
-          "unlocksAt": "2026-09-21T07:00:00",
-          "stepCount": 8
-        },
-        {
-          "index": 4,
-          "title": {
-            "hu": "Helyi közösségek és a külhoni magyarság",
-            "en": "Local communities and Hungarians beyond the borders"
-          },
-          "minutes": 12,
-          "unlocksAt": "2026-09-28T07:00:00",
-          "stepCount": 8
-        },
-        {
-          "index": 5,
-          "title": {
-            "hu": "A kultúra, az oktatás és a tudomány közvetítése",
-            "en": "Presenting culture, education and science"
-          },
-          "minutes": 12,
-          "unlocksAt": "2026-10-05T07:00:00",
-          "stepCount": 8
-        },
-        {
-          "index": 6,
-          "title": {
-            "hu": "Kisebbségek, közösségek és társadalmi összetartozás",
-            "en": "Minorities, communities and social cohesion"
-          },
-          "minutes": 12,
-          "unlocksAt": "2026-10-09T07:00:00",
-          "stepCount": 9
-        },
-        {
-          "index": 7,
-          "title": {
-            "hu": "Hiteles tájékoztatás és dezinformáció az AI korában",
-            "en": "Credible information and disinformation in the age of AI"
-          },
-          "minutes": 13,
-          "unlocksAt": "2026-10-12T07:00:00",
-          "stepCount": 10
-        },
-        {
-          "index": 8,
-          "title": {
-            "hu": "Hitelesség, pártatlanság és függetlenség",
-            "en": "Credibility, impartiality and independence"
-          },
-          "minutes": 15,
-          "unlocksAt": "2026-10-16T07:00:00",
-          "stepCount": 8
-        },
-        {
-          "index": 9,
-          "title": {
-            "hu": "Tartalmak, platformok és digitális hozzáférés",
-            "en": "Content, platforms and digital access"
-          },
-          "minutes": 12,
-          "unlocksAt": "2026-10-21T07:00:00",
           "stepCount": 10
         }
       ],
-      "chapterCount": 10,
-      "stepCount": 86,
-      "totalMinutes": 143,
+      "chapterCount": 1,
+      "stepCount": 10,
+      "totalMinutes": 27,
       "knowledgeCount": 0,
       "knowledgeIds": [],
       "questions": [
         {
-          "id": "a-teljes-ut",
-          "title": "Ismerd meg a teljes utat!",
+          "id": "why-not-ask-more-often",
+          "title": "Társadalmi egyeztetés",
           "kind": "video",
           "minutes": 2,
-          "chapter": "A közmédia küldetése",
+          "chapter": "Milyen legyen a Közhang?",
           "chapterIndex": 0,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/a-teljes-ut"
+          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/why-not-ask-more-often"
         },
         {
-          "id": "miert-fontos",
-          "title": "Miért fontos ez?",
-          "kind": "infographic",
-          "minutes": 1,
-          "chapter": "A közmédia küldetése",
-          "chapterIndex": 0,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/miert-fontos"
-        },
-        {
-          "id": "hogy-latjuk-ma",
-          "title": "Hogy látjuk ma?",
-          "kind": "video",
-          "minutes": 9,
-          "chapter": "A közmédia küldetése",
-          "chapterIndex": 0,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/hogy-latjuk-ma"
-        },
-        {
-          "id": "mashol-a-vilagban",
-          "title": "Hogyan csinálják máshol a világban?",
-          "kind": "infographic",
-          "minutes": 2,
-          "chapter": "A közmédia küldetése",
-          "chapterIndex": 0,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/mashol-a-vilagban"
-        },
-        {
-          "id": "mit-gondolnak-masok",
-          "title": "Mit gondolnak mások?",
-          "kind": "infographic",
-          "minutes": 1,
-          "chapter": "A közmédia küldetése",
-          "chapterIndex": 0,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/mit-gondolnak-masok"
-        },
-        {
-          "id": "sajat-szavaiddal",
-          "title": "Mi a közmédia küldetése?",
-          "kind": "question",
-          "minutes": 2,
-          "chapter": "A közmédia küldetése",
-          "chapterIndex": 0,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/sajat-szavaiddal"
-        },
-        {
-          "id": "mi-a-fontosabb",
-          "title": "Mi a fontosabb?",
-          "kind": "question",
-          "minutes": 2,
-          "chapter": "A közmédia küldetése",
-          "chapterIndex": 0,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/mi-a-fontosabb"
-        },
-        {
-          "id": "ch1-summary",
-          "title": "Összegzés",
-          "kind": "infographic",
-          "minutes": 0,
-          "chapter": "A közmédia küldetése",
-          "chapterIndex": 0,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/ch1-summary"
-        },
-        {
-          "id": "ch2-opening",
-          "title": "Mit jelent ma a közszolgálatiság?",
-          "kind": "video",
-          "minutes": 2,
-          "chapter": "A közszolgálatiság jelentése és társadalmi értéke",
-          "chapterIndex": 1,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/ch2-opening"
-        },
-        {
-          "id": "what-is-public-service",
-          "title": "Mi a közszolgálat?",
-          "kind": "infographic",
-          "minutes": 2,
-          "chapter": "A közszolgálatiság jelentése és társadalmi értéke",
-          "chapterIndex": 1,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/what-is-public-service"
-        },
-        {
-          "id": "three-stories",
-          "title": "Három történet",
-          "kind": "video",
-          "minutes": 2,
-          "chapter": "A közszolgálatiság jelentése és társadalmi értéke",
-          "chapterIndex": 1,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/three-stories"
-        },
-        {
-          "id": "when-done-well",
-          "title": "Milyen, amikor jól csinálják?",
-          "kind": "question",
-          "minutes": 2,
-          "chapter": "A közszolgálatiság jelentése és társadalmi értéke",
-          "chapterIndex": 1,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/when-done-well"
-        },
-        {
-          "id": "ch2-what-others-think",
-          "title": "Mit gondolnak mások?",
-          "kind": "infographic",
-          "minutes": 2,
-          "chapter": "A közszolgálatiság jelentése és társadalmi értéke",
-          "chapterIndex": 1,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/ch2-what-others-think"
-        },
-        {
-          "id": "hundred-points",
-          "title": "Mi tesz egy médiát valóban közszolgálativá?",
-          "kind": "question",
-          "minutes": 2,
-          "chapter": "A közszolgálatiság jelentése és társadalmi értéke",
-          "chapterIndex": 1,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/hundred-points"
-        },
-        {
-          "id": "what-to-keep",
-          "title": "Mi az, ami semmiképp sem hiányozhat a közmédiából?",
-          "kind": "question",
-          "minutes": 2,
-          "chapter": "A közszolgálatiság jelentése és társadalmi értéke",
-          "chapterIndex": 1,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/what-to-keep"
-        },
-        {
-          "id": "ch2-closing",
-          "title": "Köszönjük, hogy megosztottad a véleményedet!",
-          "kind": "infographic",
-          "minutes": 0,
-          "chapter": "A közszolgálatiság jelentése és társadalmi értéke",
-          "chapterIndex": 1,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/ch2-closing"
-        },
-        {
-          "id": "ch3-opening",
-          "title": "Miből szeretnénk többet vagy kevesebbet, és mi működik már most is jól?",
-          "kind": "video",
-          "minutes": 2,
-          "chapter": "Milyen tartalmak hiányoznak a közmédiából?",
-          "chapterIndex": 2,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/ch3-opening"
-        },
-        {
-          "id": "what-would-you-watch",
-          "title": "Mit néznél vagy hallgatnál szívesen?",
+          "id": "how-it-works",
+          "title": "Mi történik a véleményeddel?",
           "kind": "question",
           "minutes": 3,
-          "chapter": "Milyen tartalmak hiányoznak a közmédiából?",
-          "chapterIndex": 2,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/what-would-you-watch"
+          "chapter": "Milyen legyen a Közhang?",
+          "chapterIndex": 0,
+          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/how-it-works"
         },
         {
-          "id": "schedule-builder",
-          "title": "A te műsorod",
+          "id": "more-than-a-consultation",
+          "title": "Mitől más a Közhang?",
+          "kind": "question",
+          "minutes": 3,
+          "chapter": "Milyen legyen a Közhang?",
+          "chapterIndex": 0,
+          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/more-than-a-consultation"
+        },
+        {
+          "id": "what-drives-you",
+          "title": "Miért érdemes részt venni?",
           "kind": "question",
           "minutes": 4,
-          "chapter": "Milyen tartalmak hiányoznak a közmédiából?",
-          "chapterIndex": 2,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/schedule-builder"
+          "chapter": "Milyen legyen a Közhang?",
+          "chapterIndex": 0,
+          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/what-drives-you"
         },
         {
-          "id": "idea-title",
-          "title": "Mi lenne a te műsorötleted?",
-          "kind": "question",
-          "minutes": 2,
-          "chapter": "Milyen tartalmak hiányoznak a közmédiából?",
-          "chapterIndex": 2,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/idea-title"
-        },
-        {
-          "id": "create-your-idea",
-          "title": "Hozz létre egy új műsorötletet!",
-          "kind": "question",
-          "minutes": 4,
-          "chapter": "Milyen tartalmak hiányoznak a közmédiából?",
-          "chapterIndex": 2,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/create-your-idea"
-        },
-        {
-          "id": "idea-placement",
-          "title": "Helyezzük el a kínálatban!",
-          "kind": "question",
-          "minutes": 2,
-          "chapter": "Milyen tartalmak hiányoznak a közmédiából?",
-          "chapterIndex": 2,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/idea-placement"
-        },
-        {
-          "id": "idea-summary",
-          "title": "Küldd be a műsorötleted!",
-          "kind": "infographic",
-          "minutes": 2,
-          "chapter": "Milyen tartalmak hiányoznak a közmédiából?",
-          "chapterIndex": 2,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/idea-summary"
-        },
-        {
-          "id": "ch3-closing",
-          "title": "Támogasd a neked tetsző műsorokat!",
-          "kind": "question",
-          "minutes": 2,
-          "chapter": "Milyen tartalmak hiányoznak a közmédiából?",
-          "chapterIndex": 2,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/ch3-closing"
-        },
-        {
-          "id": "ch3-summary",
-          "title": "Összegzés",
-          "kind": "infographic",
-          "minutes": 0,
-          "chapter": "Milyen tartalmak hiányoznak a közmédiából?",
-          "chapterIndex": 2,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/ch3-summary"
-        },
-        {
-          "id": "kozmedia-mindannyiunke",
-          "title": "A közmédia mindannyiunké",
-          "kind": "video",
-          "minutes": 2,
-          "chapter": "A különböző generációk közmédiája",
-          "chapterIndex": 3,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/kozmedia-mindannyiunke"
-        },
-        {
-          "id": "napi-mediaido",
-          "title": "Napi médiaidő",
-          "kind": "question",
-          "minutes": 1,
-          "chapter": "A különböző generációk közmédiája",
-          "chapterIndex": 3,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/napi-mediaido"
-        },
-        {
-          "id": "milyen-gyakran",
-          "title": "Mennyire vannak ott a mindennapjaidban?",
-          "kind": "question",
-          "minutes": 2,
-          "chapter": "A különböző generációk közmédiája",
-          "chapterIndex": 3,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/milyen-gyakran"
-        },
-        {
-          "id": "egy-napod-a-mediaban",
-          "title": "Egy napod a médiában",
-          "kind": "infographic",
-          "minutes": 3,
-          "chapter": "A különböző generációk közmédiája",
-          "chapterIndex": 3,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/egy-napod-a-mediaban"
-        },
-        {
-          "id": "melyik-musort-hol",
-          "title": "Melyik műsort milyen platformon fogyasztod a legszívesebben?",
-          "kind": "infographic",
-          "minutes": 3,
-          "chapter": "A különböző generációk közmédiája",
-          "chapterIndex": 3,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/melyik-musort-hol"
-        },
-        {
-          "id": "tudtad",
-          "title": "Tudtad?",
-          "kind": "infographic",
-          "minutes": 2,
-          "chapter": "A különböző generációk közmédiája",
-          "chapterIndex": 3,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/tudtad"
-        },
-        {
-          "id": "hol-legyen-jelen",
-          "title": "Hol kellene jelen lennie a közmédiának?",
-          "kind": "question",
-          "minutes": 2,
-          "chapter": "A különböző generációk közmédiája",
-          "chapterIndex": 3,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/hol-legyen-jelen"
-        },
-        {
-          "id": "osszegzes-generaciok",
-          "title": "Összegzés",
-          "kind": "infographic",
-          "minutes": 0,
-          "chapter": "A különböző generációk közmédiája",
-          "chapterIndex": 3,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/osszegzes-generaciok"
-        },
-        {
-          "id": "helyi-tortenetek",
-          "title": "Mi a szerepe a helyi történeteknek a közmédiában?",
-          "kind": "video",
-          "minutes": 2,
-          "chapter": "Helyi közösségek és a külhoni magyarság",
-          "chapterIndex": 4,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/helyi-tortenetek"
-        },
-        {
-          "id": "fontos-e-szamodra",
-          "title": "Fontos-e számodra?",
-          "kind": "question",
-          "minutes": 1,
-          "chapter": "Helyi közösségek és a külhoni magyarság",
-          "chapterIndex": 4,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/fontos-e-szamodra"
-        },
-        {
-          "id": "mitol-fontos",
-          "title": "Mitől lesz fontos egy helyi történet?",
-          "kind": "question",
-          "minutes": 2,
-          "chapter": "Helyi közösségek és a külhoni magyarság",
-          "chapterIndex": 4,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/mitol-fontos"
-        },
-        {
-          "id": "mennyire-informalt",
-          "title": "Mennyire vagy informált a helyi ügyekben?",
-          "kind": "question",
-          "minutes": 2,
-          "chapter": "Helyi közösségek és a külhoni magyarság",
-          "chapterIndex": 4,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/mennyire-informalt"
-        },
-        {
-          "id": "helyi-temak",
-          "title": "Mely helyi történeteket látnád szívesen a közmédiában?",
-          "kind": "question",
-          "minutes": 1,
-          "chapter": "Helyi közösségek és a külhoni magyarság",
-          "chapterIndex": 4,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/helyi-temak"
-        },
-        {
-          "id": "masok-gondolatai",
-          "title": "Mit gondolnak mások?",
-          "kind": "infographic",
-          "minutes": 1,
-          "chapter": "Helyi közösségek és a külhoni magyarság",
-          "chapterIndex": 4,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/masok-gondolatai"
-        },
-        {
-          "id": "helyi-hiroldal",
-          "title": "Tervezd meg a saját helyi híroldaladat!",
+          "id": "what-builds-trust",
+          "title": "Mitől bíznál benne?",
           "kind": "question",
           "minutes": 3,
-          "chapter": "Helyi közösségek és a külhoni magyarság",
-          "chapterIndex": 4,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/helyi-hiroldal"
+          "chapter": "Milyen legyen a Közhang?",
+          "chapterIndex": 0,
+          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/what-builds-trust"
         },
         {
-          "id": "osszegzes-helyi",
-          "title": "Összegzés",
-          "kind": "infographic",
-          "minutes": 0,
-          "chapter": "Helyi közösségek és a külhoni magyarság",
-          "chapterIndex": 4,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/osszegzes-helyi"
-        },
-        {
-          "id": "kultura-oktatas-tudomany",
-          "title": "A kultúra, az oktatás és a tudomány közvetítése",
-          "kind": "video",
-          "minutes": 2,
-          "chapter": "A kultúra, az oktatás és a tudomány közvetítése",
-          "chapterIndex": 5,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/kultura-oktatas-tudomany"
-        },
-        {
-          "id": "magyar-temak",
-          "title": "Hazai témák",
-          "kind": "question",
-          "minutes": 2,
-          "chapter": "A kultúra, az oktatás és a tudomány közvetítése",
-          "chapterIndex": 5,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/magyar-temak"
-        },
-        {
-          "id": "kiket-latnal-szivesen",
-          "title": "Kiket látnál szívesen?",
-          "kind": "question",
-          "minutes": 1,
-          "chapter": "A kultúra, az oktatás és a tudomány közvetítése",
-          "chapterIndex": 5,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/kiket-latnal-szivesen"
-        },
-        {
-          "id": "kozvetitesek",
-          "title": "Közvetítések a tévében, rádióban",
-          "kind": "question",
-          "minutes": 2,
-          "chapter": "A kultúra, az oktatás és a tudomány közvetítése",
-          "chapterIndex": 5,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/kozvetitesek"
-        },
-        {
-          "id": "tudomany-ismeretterjesztes",
-          "title": "Tudomány és ismeretterjesztés",
-          "kind": "question",
-          "minutes": 2,
-          "chapter": "A kultúra, az oktatás és a tudomány közvetítése",
-          "chapterIndex": 5,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/tudomany-ismeretterjesztes"
-        },
-        {
-          "id": "kozmedia-gyerekeknek",
-          "title": "Közmédia gyerekeknek",
-          "kind": "question",
-          "minutes": 2,
-          "chapter": "A kultúra, az oktatás és a tudomány közvetítése",
-          "chapterIndex": 5,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/kozmedia-gyerekeknek"
-        },
-        {
-          "id": "masok-a-kulturarol",
-          "title": "Mit gondolnak mások?",
-          "kind": "infographic",
-          "minutes": 1,
-          "chapter": "A kultúra, az oktatás és a tudomány közvetítése",
-          "chapterIndex": 5,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/masok-a-kulturarol"
-        },
-        {
-          "id": "osszegzes-kultura",
-          "title": "Összegzés",
-          "kind": "infographic",
-          "minutes": 0,
-          "chapter": "A kultúra, az oktatás és a tudomány közvetítése",
-          "chapterIndex": 5,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/osszegzes-kultura"
-        },
-        {
-          "id": "kisebbsegek-kozossegek",
-          "title": "Kisebbségek, közösségek és társadalmi összetartozás",
-          "kind": "video",
-          "minutes": 1,
-          "chapter": "Kisebbségek, közösségek és társadalmi összetartozás",
-          "chapterIndex": 6,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/kisebbsegek-kozossegek"
-        },
-        {
-          "id": "kinek-a-tortenetet",
-          "title": "Kinek a történetét néznéd meg?",
-          "kind": "question",
-          "minutes": 2,
-          "chapter": "Kisebbségek, közösségek és társadalmi összetartozás",
-          "chapterIndex": 6,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/kinek-a-tortenetet"
-        },
-        {
-          "id": "milyen-formaban",
-          "title": "Milyen formában?",
-          "kind": "question",
-          "minutes": 1,
-          "chapter": "Kisebbségek, közösségek és társadalmi összetartozás",
-          "chapterIndex": 6,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/milyen-formaban"
-        },
-        {
-          "id": "kozmedia-felelossege",
-          "title": "A közmédia felelőssége",
-          "kind": "question",
-          "minutes": 2,
-          "chapter": "Kisebbségek, közösségek és társadalmi összetartozás",
-          "chapterIndex": 6,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/kozmedia-felelossege"
-        },
-        {
-          "id": "magyar-konyha",
-          "title": "A magyar konyha sokfélesége",
-          "kind": "infographic",
-          "minutes": 2,
-          "chapter": "Kisebbségek, közösségek és társadalmi összetartozás",
-          "chapterIndex": 6,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/magyar-konyha"
-        },
-        {
-          "id": "kikkel-talalkozol",
-          "title": "Kikkel találkozol a képernyőn?",
-          "kind": "question",
-          "minutes": 1,
-          "chapter": "Kisebbségek, közösségek és társadalmi összetartozás",
-          "chapterIndex": 6,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/kikkel-talalkozol"
-        },
-        {
-          "id": "reprezentacio",
-          "title": "Tudtad?",
-          "kind": "infographic",
-          "minutes": 1,
-          "chapter": "Kisebbségek, közösségek és társadalmi összetartozás",
-          "chapterIndex": 6,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/reprezentacio"
-        },
-        {
-          "id": "mitol-hiteles",
-          "title": "Mitől lesz hiteles?",
-          "kind": "question",
-          "minutes": 2,
-          "chapter": "Kisebbségek, közösségek és társadalmi összetartozás",
-          "chapterIndex": 6,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/mitol-hiteles"
-        },
-        {
-          "id": "osszegzes-kozossegek",
-          "title": "Összegzés",
-          "kind": "infographic",
-          "minutes": 0,
-          "chapter": "Kisebbségek, közösségek és társadalmi összetartozás",
-          "chapterIndex": 6,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/osszegzes-kozossegek"
-        },
-        {
-          "id": "hiteles-tajekoztatas",
-          "title": "Hiteles tájékoztatás és dezinformáció az AI korában",
-          "kind": "video",
-          "minutes": 1,
-          "chapter": "Hiteles tájékoztatás és dezinformáció az AI korában",
-          "chapterIndex": 7,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/hiteles-tajekoztatas"
-        },
-        {
-          "id": "mennyire-bizol",
-          "title": "Mennyire bízol abban, amit olvasol?",
-          "kind": "question",
-          "minutes": 2,
-          "chapter": "Hiteles tájékoztatás és dezinformáció az AI korában",
-          "chapterIndex": 7,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/mennyire-bizol"
-        },
-        {
-          "id": "igaz-vagy-hamis",
-          "title": "Igaz vagy Hamis?",
-          "kind": "question",
-          "minutes": 2,
-          "chapter": "Hiteles tájékoztatás és dezinformáció az AI korában",
-          "chapterIndex": 7,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/igaz-vagy-hamis"
-        },
-        {
-          "id": "igy-terjed-egy-alhir",
-          "title": "Így terjed egy álhír",
-          "kind": "question",
-          "minutes": 1,
-          "chapter": "Hiteles tájékoztatás és dezinformáció az AI korában",
-          "chapterIndex": 7,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/igy-terjed-egy-alhir"
-        },
-        {
-          "id": "mi-alapjan-dontesz",
-          "title": "Általában mi alapján döntesz?",
-          "kind": "question",
-          "minutes": 2,
-          "chapter": "Hiteles tájékoztatás és dezinformáció az AI korában",
-          "chapterIndex": 7,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/mi-alapjan-dontesz"
-        },
-        {
-          "id": "alhirek-tipusai",
-          "title": "Nem minden álhír egyforma",
-          "kind": "infographic",
-          "minutes": 1,
-          "chapter": "Hiteles tájékoztatás és dezinformáció az AI korában",
-          "chapterIndex": 7,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/alhirek-tipusai"
-        },
-        {
-          "id": "megosztottal-alhirt",
-          "title": "Megosztottál már álhírt?",
-          "kind": "question",
-          "minutes": 1,
-          "chapter": "Hiteles tájékoztatás és dezinformáció az AI korában",
-          "chapterIndex": 7,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/megosztottal-alhirt"
-        },
-        {
-          "id": "kozmedia-intezkedesei",
-          "title": "A közmédia felelőssége",
-          "kind": "question",
-          "minutes": 2,
-          "chapter": "Hiteles tájékoztatás és dezinformáció az AI korában",
-          "chapterIndex": 7,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/kozmedia-intezkedesei"
-        },
-        {
-          "id": "szakmai-szervezetek",
-          "title": "Ezeket mondták szakmai szervezetek",
-          "kind": "infographic",
-          "minutes": 1,
-          "chapter": "Hiteles tájékoztatás és dezinformáció az AI korában",
-          "chapterIndex": 7,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/szakmai-szervezetek"
-        },
-        {
-          "id": "osszegzes-dezinformacio",
-          "title": "Összegzés",
-          "kind": "infographic",
-          "minutes": 0,
-          "chapter": "Hiteles tájékoztatás és dezinformáció az AI korában",
-          "chapterIndex": 7,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/osszegzes-dezinformacio"
-        },
-        {
-          "id": "hitelesseg-fuggetlenseg",
-          "title": "Hitelesség, pártatlanság és függetlenség",
-          "kind": "video",
-          "minutes": 1,
-          "chapter": "Hitelesség, pártatlanság és függetlenség",
-          "chapterIndex": 8,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/hitelesseg-fuggetlenseg"
-        },
-        {
-          "id": "mitol-hiteles-hirado",
-          "title": "Mitől hiteles egy híradó?",
-          "kind": "question",
-          "minutes": 2,
-          "chapter": "Hitelesség, pártatlanság és függetlenség",
-          "chapterIndex": 8,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/mitol-hiteles-hirado"
-        },
-        {
-          "id": "honnan-tajekozodsz",
-          "title": "Te honnan tájékozódsz?",
+          "id": "whats-next",
+          "title": "Mi az, ami hiányzik?",
           "kind": "question",
           "minutes": 3,
-          "chapter": "Hitelesség, pártatlanság és függetlenség",
-          "chapterIndex": 8,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/honnan-tajekozodsz"
+          "chapter": "Milyen legyen a Közhang?",
+          "chapterIndex": 0,
+          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/whats-next"
         },
         {
-          "id": "kiegyensulyozott-tajekoztatas",
-          "title": "Kiegyensúlyozott tájékoztatás",
+          "id": "how-would-you-use-it",
+          "title": "Merre fejlődjön tovább?",
           "kind": "question",
           "minutes": 3,
-          "chapter": "Hitelesség, pártatlanság és függetlenség",
-          "chapterIndex": 8,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/kiegyensulyozott-tajekoztatas"
+          "chapter": "Milyen legyen a Közhang?",
+          "chapterIndex": 0,
+          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/how-would-you-use-it"
         },
         {
-          "id": "szerkesztoi-dontes",
-          "title": "Szerkesztői döntés éles helyzetben",
-          "kind": "question",
-          "minutes": 2,
-          "chapter": "Hitelesség, pártatlanság és függetlenség",
-          "chapterIndex": 8,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/szerkesztoi-dontes"
-        },
-        {
-          "id": "sajat-hiradod",
-          "title": "A saját híradód",
+          "id": "what-should-it-know",
+          "title": "Milyen legyen használni?",
           "kind": "question",
           "minutes": 3,
-          "chapter": "Hitelesség, pártatlanság és függetlenség",
-          "chapterIndex": 8,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/sajat-hiradod"
+          "chapter": "Milyen legyen a Közhang?",
+          "chapterIndex": 0,
+          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/what-should-it-know"
         },
         {
-          "id": "a-te-hiradod",
-          "title": "A te híradód",
-          "kind": "infographic",
-          "minutes": 1,
-          "chapter": "Hitelesség, pártatlanság és függetlenség",
-          "chapterIndex": 8,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/a-te-hiradod"
+          "id": "your-questions",
+          "title": "Mitől lehetne jobb?",
+          "kind": "question",
+          "minutes": 3,
+          "chapter": "Milyen legyen a Közhang?",
+          "chapterIndex": 0,
+          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/your-questions"
         },
         {
-          "id": "osszegzes-hiradas",
+          "id": "cp-summary",
           "title": "Összegzés",
           "kind": "infographic",
           "minutes": 0,
-          "chapter": "Hitelesség, pártatlanság és függetlenség",
-          "chapterIndex": 8,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/osszegzes-hiradas"
-        },
-        {
-          "id": "platformok-hozzaferes",
-          "title": "Tartalmak, platformok és digitális hozzáférés",
-          "kind": "video",
-          "minutes": 1,
-          "chapter": "Tartalmak, platformok és digitális hozzáférés",
-          "chapterIndex": 9,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/platformok-hozzaferes"
-        },
-        {
-          "id": "hol-talalkozol-a-kozmediaval",
-          "title": "Te hol találkozol a közmédiával?",
-          "kind": "question",
-          "minutes": 1,
-          "chapter": "Tartalmak, platformok és digitális hozzáférés",
-          "chapterIndex": 9,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/hol-talalkozol-a-kozmediaval"
-        },
-        {
-          "id": "mediafogyasztas-egy-napon",
-          "title": "Médiafogyasztás egy átlagos napon",
-          "kind": "question",
-          "minutes": 1,
-          "chapter": "Tartalmak, platformok és digitális hozzáférés",
-          "chapterIndex": 9,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/mediafogyasztas-egy-napon"
-        },
-        {
-          "id": "hol-szeretnel-hozzaferni",
-          "title": "Hol szeretnél hozzáférni a közmédia tartalmaihoz?",
-          "kind": "question",
-          "minutes": 1,
-          "chapter": "Tartalmak, platformok és digitális hozzáférés",
-          "chapterIndex": 9,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/hol-szeretnel-hozzaferni"
-        },
-        {
-          "id": "a-te-musorprogramod",
-          "title": "A te műsorprogramod",
-          "kind": "question",
-          "minutes": 3,
-          "chapter": "Tartalmak, platformok és digitális hozzáférés",
-          "chapterIndex": 9,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/a-te-musorprogramod"
-        },
-        {
-          "id": "reklamok-a-kozmediaban",
-          "title": "Reklámok a közmédiában",
-          "kind": "question",
-          "minutes": 1,
-          "chapter": "Tartalmak, platformok és digitális hozzáférés",
-          "chapterIndex": 9,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/reklamok-a-kozmediaban"
-        },
-        {
-          "id": "kepzeljuk-el-a-jovot",
-          "title": "Képzeljük el a jövőt…",
-          "kind": "question",
-          "minutes": 1,
-          "chapter": "Tartalmak, platformok és digitális hozzáférés",
-          "chapterIndex": 9,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/kepzeljuk-el-a-jovot"
-        },
-        {
-          "id": "fiatalok-elerese",
-          "title": "Hogyan érhetné el a fiatalokat?",
-          "kind": "question",
-          "minutes": 1,
-          "chapter": "Tartalmak, platformok és digitális hozzáférés",
-          "chapterIndex": 9,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/fiatalok-elerese"
-        },
-        {
-          "id": "kozmedia-2030-ban",
-          "title": "A ti hangotok",
-          "kind": "question",
-          "minutes": 2,
-          "chapter": "Tartalmak, platformok és digitális hozzáférés",
-          "chapterIndex": 9,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/kozmedia-2030-ban"
-        },
-        {
-          "id": "osszegzes-platformok",
-          "title": "Összegzés",
-          "kind": "infographic",
-          "minutes": 0,
-          "chapter": "Tartalmak, platformok és digitális hozzáférés",
-          "chapterIndex": 9,
-          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/osszegzes-platformok"
+          "chapter": "Milyen legyen a Közhang?",
+          "chapterIndex": 0,
+          "url": "https://kozhang.hu/egyeztetesek/kozos-platform/lepes/cp-summary"
         }
       ],
       "mediaCount": 0,
@@ -1948,6 +1183,8 @@
       "completionRate": 0,
       "daysLeft": 31,
       "opensAt": null,
+      "closesAt": null,
+      "resultsAt": null,
       "badgeStyle": null,
       "brand": false,
       "photo": "https://kozhang.hu/kozhang/img/topics/economy.webp",
@@ -1980,7 +1217,7 @@
       },
       "category": "municipality",
       "scope": "local",
-      "status": "open",
+      "status": "closed",
       "locality": {
         "town": "Esztergom",
         "label": {
@@ -2030,8 +1267,10 @@
       },
       "participants": 0,
       "completionRate": 0,
-      "daysLeft": 21,
+      "daysLeft": 0,
       "opensAt": "2026-09-24T07:00:00",
+      "closesAt": "2026-10-12T00:00:00",
+      "resultsAt": null,
       "badgeStyle": null,
       "brand": false,
       "photo": "https://kozhang.hu/kozhang/img/webapp/discussion-palatinus.webp",
@@ -2060,6 +1299,7 @@
           "id": "bevezeto",
           "title": "Hogyan alakítsuk együtt a Palatinus-tó jövőjét?",
           "kind": "question",
+          "minutes": 2,
           "chapter": "A Palatinus-tó jövője",
           "chapterIndex": 0,
           "url": "https://kozhang.hu/egyeztetesek/palatinus-to/lepes/bevezeto"
@@ -2068,6 +1308,7 @@
           "id": "kapcsolodasod",
           "title": "Te hogyan kapcsolódsz a Palatinushoz?",
           "kind": "question",
+          "minutes": 2,
           "chapter": "A Palatinus-tó jövője",
           "chapterIndex": 0,
           "url": "https://kozhang.hu/egyeztetesek/palatinus-to/lepes/kapcsolodasod"
@@ -2076,6 +1317,7 @@
           "id": "a-to-allapota",
           "title": "Te hogy látod ma a Palatinus-tó állapotát?",
           "kind": "question",
+          "minutes": 2,
           "chapter": "A Palatinus-tó jövője",
           "chapterIndex": 0,
           "url": "https://kozhang.hu/egyeztetesek/palatinus-to/lepes/a-to-allapota"
@@ -2084,6 +1326,7 @@
           "id": "mi-tortenik-a-toval",
           "title": "Mi történik a Palatinus-tóval?",
           "kind": "question",
+          "minutes": 2,
           "chapter": "A Palatinus-tó jövője",
           "chapterIndex": 0,
           "url": "https://kozhang.hu/egyeztetesek/palatinus-to/lepes/mi-tortenik-a-toval"
@@ -2092,6 +1335,7 @@
           "id": "mi-a-legsurgosebb",
           "title": "Mi a legsürgősebb?",
           "kind": "question",
+          "minutes": 2,
           "chapter": "A Palatinus-tó jövője",
           "chapterIndex": 0,
           "url": "https://kozhang.hu/egyeztetesek/palatinus-to/lepes/mi-a-legsurgosebb"
@@ -2100,6 +1344,7 @@
           "id": "nezopontok",
           "title": "Egy tó sokféle nézőpont.",
           "kind": "question",
+          "minutes": 2,
           "chapter": "A Palatinus-tó jövője",
           "chapterIndex": 0,
           "url": "https://kozhang.hu/egyeztetesek/palatinus-to/lepes/nezopontok"
@@ -2108,6 +1353,7 @@
           "id": "mit-fejlesztenel",
           "title": "Mit fejlesztenél?",
           "kind": "question",
+          "minutes": 2,
           "chapter": "A Palatinus-tó jövője",
           "chapterIndex": 0,
           "url": "https://kozhang.hu/egyeztetesek/palatinus-to/lepes/mit-fejlesztenel"
@@ -2116,6 +1362,7 @@
           "id": "hol-kellenek-szabalyok",
           "title": "Hol lenne szükség egyértelműbb szabályokra?",
           "kind": "question",
+          "minutes": 2,
           "chapter": "A Palatinus-tó jövője",
           "chapterIndex": 0,
           "url": "https://kozhang.hu/egyeztetesek/palatinus-to/lepes/hol-kellenek-szabalyok"
@@ -2124,6 +1371,7 @@
           "id": "hol-a-hatar",
           "title": "Hol húznád meg a határt?",
           "kind": "question",
+          "minutes": 2,
           "chapter": "A Palatinus-tó jövője",
           "chapterIndex": 0,
           "url": "https://kozhang.hu/egyeztetesek/palatinus-to/lepes/hol-a-hatar"
@@ -2132,6 +1380,7 @@
           "id": "palatinus-2036",
           "title": "Képzeld el a Palatinust 2036-ban.",
           "kind": "question",
+          "minutes": 2,
           "chapter": "A Palatinus-tó jövője",
           "chapterIndex": 0,
           "url": "https://kozhang.hu/egyeztetesek/palatinus-to/lepes/palatinus-2036"
@@ -2140,6 +1389,7 @@
           "id": "osszegzes",
           "title": "Ezt mondtad",
           "kind": "question",
+          "minutes": 0,
           "chapter": "A Palatinus-tó jövője",
           "chapterIndex": 0,
           "url": "https://kozhang.hu/egyeztetesek/palatinus-to/lepes/osszegzes"
@@ -2166,23 +1416,91 @@
       },
       "category": "legislation",
       "scope": "national",
-      "status": "open",
+      "status": "closed",
       "locality": null,
       "participants": 0,
       "completionRate": 0,
-      "daysLeft": 30,
-      "opensAt": null,
+      "daysLeft": 0,
+      "opensAt": "2026-11-03T07:00:00",
+      "closesAt": "2026-11-08T23:59:00",
+      "resultsAt": "2026-11-13T07:00:00",
       "badgeStyle": null,
       "brand": false,
       "photo": "https://kozhang.hu/kozhang/img/webapp/discussion-memi.webp",
       "hero": "https://kozhang.hu/kozhang/img/webapp/discussion-hero-memi.webp",
-      "chapters": [],
-      "chapterCount": 0,
-      "stepCount": 0,
-      "totalMinutes": 0,
+      "chapters": [
+        {
+          "index": 0,
+          "title": {
+            "hu": "Egy új intézmény a társadalmi részvételért",
+            "en": "A new institution for public participation"
+          },
+          "minutes": 15,
+          "unlocksAt": "2026-11-03T07:00:00",
+          "stepCount": 6
+        }
+      ],
+      "chapterCount": 1,
+      "stepCount": 6,
+      "totalMinutes": 15,
       "knowledgeCount": 0,
       "knowledgeIds": [],
-      "questions": [],
+      "questions": [
+        {
+          "id": "miert-van-szukseg-a-memire",
+          "title": "Mi lenne, ha nem csak négyévente szólnánk bele?",
+          "kind": "infographic",
+          "minutes": 2,
+          "chapter": "Egy új intézmény a társadalmi részvételért",
+          "chapterIndex": 0,
+          "url": "https://kozhang.hu/egyeztetesek/memi-tarsadalmi-reszvetel/lepes/miert-van-szukseg-a-memire"
+        },
+        {
+          "id": "a-memi-feladatai",
+          "title": "Hogyan jutna el egy helyi probléma a döntéshozókhoz?",
+          "kind": "infographic",
+          "minutes": 2,
+          "chapter": "Egy új intézmény a társadalmi részvételért",
+          "chapterIndex": 0,
+          "url": "https://kozhang.hu/egyeztetesek/memi-tarsadalmi-reszvetel/lepes/a-memi-feladatai"
+        },
+        {
+          "id": "mit-gondolsz-a-memirol",
+          "title": "Te mit gondolsz a MEMI-ről?",
+          "kind": "question",
+          "minutes": 2,
+          "chapter": "Egy új intézmény a társadalmi részvételért",
+          "chapterIndex": 0,
+          "url": "https://kozhang.hu/egyeztetesek/memi-tarsadalmi-reszvetel/lepes/mit-gondolsz-a-memirol"
+        },
+        {
+          "id": "ot-honap-kozos-szakmai-munka",
+          "title": "Öt hónap közös szakmai munka",
+          "kind": "infographic",
+          "minutes": 2,
+          "chapter": "Egy új intézmény a társadalmi részvételért",
+          "chapterIndex": 0,
+          "url": "https://kozhang.hu/egyeztetesek/memi-tarsadalmi-reszvetel/lepes/ot-honap-kozos-szakmai-munka"
+        },
+        {
+          "id": "ismerd-meg-a-torvenytervezetet",
+          "title": "Ismerd meg a törvénytervezetet!",
+          "kind": "question",
+          "minutes": 6,
+          "chapter": "Egy új intézmény a társadalmi részvételért",
+          "chapterIndex": 0,
+          "url": "https://kozhang.hu/egyeztetesek/memi-tarsadalmi-reszvetel/lepes/ismerd-meg-a-torvenytervezetet"
+        },
+        {
+          "id": "memi-osszegzes",
+          "title": "Összegzés",
+          "kind": "question",
+          "minutes": 0,
+          "chapter": "Egy új intézmény a társadalmi részvételért",
+          "chapterIndex": 0,
+          "url": "https://kozhang.hu/egyeztetesek/memi-tarsadalmi-reszvetel/lepes/memi-osszegzes"
+        }
+      ],
       "mediaCount": 0,
       "url": "https://kozhang.hu/egyeztetesek/memi-tarsadalmi-reszvetel",
       "ideasUrl": "https://kozhang.hu/egyeztetesek/memi-tarsadalmi-reszvetel/otletek",
@@ -2217,6 +1535,8 @@
       "completionRate": 0,
       "daysLeft": 12,
       "opensAt": null,
+      "closesAt": null,
+      "resultsAt": null,
       "badgeStyle": null,
       "brand": false,
       "photo": "https://kozhang.hu/kozhang/img/webapp/discussion-short-term-rental.webp",
@@ -2262,6 +1582,8 @@
       "completionRate": 0,
       "daysLeft": 14,
       "opensAt": null,
+      "closesAt": null,
+      "resultsAt": null,
       "badgeStyle": null,
       "brand": false,
       "photo": "https://kozhang.hu/kozhang/img/webapp/discussion-clean-public-spaces.webp",
@@ -2307,6 +1629,8 @@
       "completionRate": 0,
       "daysLeft": 33,
       "opensAt": null,
+      "closesAt": null,
+      "resultsAt": null,
       "badgeStyle": null,
       "brand": false,
       "photo": "https://kozhang.hu/kozhang/img/webapp/discussion-paks-closed-gardens.webp",
@@ -2384,6 +1708,8 @@
       "completionRate": 0,
       "daysLeft": 25,
       "opensAt": null,
+      "closesAt": null,
+      "resultsAt": null,
       "badgeStyle": null,
       "brand": false,
       "photo": "https://kozhang.hu/kozhang/img/webapp/discussion-efott-2027.webp",
@@ -2422,6 +1748,8 @@
       "completionRate": 0,
       "daysLeft": 0,
       "opensAt": null,
+      "closesAt": null,
+      "resultsAt": null,
       "badgeStyle": null,
       "brand": false,
       "photo": "https://kozhang.hu/kozhang/img/webapp/discussion-videkfejlesztes.webp",

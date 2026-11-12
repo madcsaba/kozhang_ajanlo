@@ -181,7 +181,13 @@ function literalAt(src, idx) {
     return null;
   }
   const m = src.slice(k).match(/^(?:-?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?|0[xX][0-9a-fA-F]+|true|false|null|undefined|NaN|Infinity)/);
-  return m ? m[0] : null;
+  if (m) return m[0];
+  // A kozhang.hu a web/editor környezetet feltételesen választja ki:
+  //   `yt=gt()===`web`?`2026-11-03T07:00:00`:void 0`
+  // A nyilvános oldal a `web` ágat futtatja, ezért azt vesszük (a dátumot
+  // visszaadva, hogy a tartalomtól függő érték is kiderüljön).
+  const cond = src.slice(k).match(/^[A-Za-z_$][\w$]*\(\)\s*===?\s*`web`\s*\?\s*(`[^`]+`)\s*:\s*(?:void 0|undefined|null)/);
+  return cond ? cond[1] : null;
 }
 
 /** Nem oldandó beépített értékek (a Function globális scope-ja amúgy is adja őket). */
@@ -407,8 +413,42 @@ function findJsonParseBlocks(src) {
 }
 
 /**
+ * A részletes téma-objektum `chapters:[` kulcsának helye.
+ *
+ * A `chapters:[` előfordulás sok témánál egymás mellett van, és a téma
+ * azonosítója a *listában* jóval korábbi előfordulás. Ezért nem elég a
+ * `chapters:[` kulcsszót keresni: meg kell nézni, hogy az adott blokk
+ * ugyanahhoz a témához tartozik-e.
+ *
+ * A jel: a téma saját objektuma `id:`-vel kezdődik, és a `chapters:[` a
+ * `heroTitle`/`heroLead`/`backdrop` mezők UTÁN jön – vagyis a blokk előtti
+ * ablakban meg kell lennie a téma `id:` mezőjének (literál vagy a kiemelt
+ * változó nevével).
+ */
+function findDetailChapters(src, fromIdx, id, aliases) {
+  const win = 1200;
+  let pos = fromIdx;
+  while (true) {
+    const ci = src.indexOf("chapters:[", pos);
+    if (ci < 0) return -1;
+    // a blokk előtti ablakban kell lennie a téma saját `id:`-jének
+    const before = src.slice(Math.max(0, ci - win), ci);
+    const idHit =
+      before.includes(`id:\`${id}\``) ||
+      [...aliases].some((a) => new RegExp(`id:\\s*${a}\\s*,`).test(before));
+    if (idHit) return ci;
+    pos = ci + 1;
+  }
+}
+
+/**
  * A nyitott témák részletes objektumai: `{id:`X`, …, chapters:[{title,minutes,steps}]}`
  * A `steps` lehet inline tömb vagy hivatkozott változó (pl. `steps:Js`).
+ *
+ * A MEMI-téma két okból különbözik: az azonosítója egy kiemelt változó
+ * (`id:b`, ahol `b` a témaazonosító), és a lépései egy `.map()` hívásból
+ * jönnek (`steps:bt.map(...)`), ahol a `bt` `[id,hu,en]` sorokból álló tömb.
+ * Ezek nélkül a téma 0 fejezettel és 0 lépéssel érkezne.
  */
 function extractDetailChapters(src, ids) {
   const result = new Map();
@@ -427,6 +467,44 @@ function extractDetailChapters(src, ids) {
     return v;
   };
 
+  /**
+   * A `.map()`-ból származó lépések: a forrás tömb `[id,hu,en]` sorokból áll,
+   * a callback pedig megmondja, melyik lépések illusztrációk (`St.has(id)`)
+   * és hány percesek (`r===xt?0:…`). A `kind` és a `minutes` a callbackből
+   * olvasható ki, ezért ezeket mintákkal keressük.
+   */
+  const resolveMappedSteps = (body) => {
+    const m = body.match(/\bsteps:\s*([A-Za-z_$][\w$]*)\s*\.\s*map\s*\(/);
+    if (!m) return null;
+    const rows = resolveVar(m[1]);
+    if (!Array.isArray(rows) || !rows.length) return null;
+
+    // az illusztrációk halmaza: `St=new Set([`a`,`b`])`
+    const infoIds = new Set();
+    const setName = body.match(/\bsteps:[\s\S]{0,400}?([A-Za-z_$][\w$]*)\s*\.\s*has\s*\(/)?.[1];
+    if (setName) {
+      const sm = src.match(new RegExp(`\\b${setName}\\s*=\\s*new Set\\(\\[([\\s\\S]*?)\\]\\)`));
+      if (sm) for (const id of sm[1].matchAll(/`([^`]+)`/g)) infoIds.add(id[1]);
+    }
+    // a hosszabb lépés (törvénytervezet) 6 perc, a többi 2: `e===`x`?6:2`
+    const longMatch = body.match(/\be\s*===\s*`([^`]+)`\s*\?\s*(\d+)\s*:\s*(\d+)/);
+    const lastIdx = rows.length - 1;
+
+    return rows.map((row, i) => {
+      const [id, hu, en] = Array.isArray(row) ? row : [row?.id, row?.title?.hu, row?.title?.en];
+      let minutes = longMatch ? Number(longMatch[3]) : 2;
+      if (longMatch && id === longMatch[1]) minutes = Number(longMatch[2]);
+      if (i === lastIdx) minutes = 0; // a zárólépés (összegzés) nulla perc
+      return {
+        id,
+        title: { hu: hu ?? null, en: en ?? null },
+        kind: infoIds.has(id) ? "infographic" : "question",
+        minutes,
+        index: i,
+      };
+    });
+  };
+
   const normalizeSteps = (arr) =>
     (Array.isArray(arr) ? arr : [])
       .map((s) => {
@@ -443,9 +521,19 @@ function extractDetailChapters(src, ids) {
 
   for (const id of ids) {
     if (result.has(id)) continue;
-    for (const m of src.matchAll(new RegExp(`id:\\s*\`${id}\``, "g"))) {
-      const ci = src.indexOf("chapters:[", m.index);
-      if (ci < 0 || ci - m.index > 12000) continue;
+    // Az azonosító lehet literál (`id:`x``) vagy kiemelt változó (`id:b`, ahol
+    // `b=`x``). A változós alakot csak akkor fogadjuk el, ha a változó valóban
+    // ezt az azonosítót tartalmazza — különben másik téma fejezeteit kapnánk.
+    const aliasRe = new RegExp(`\\b([A-Za-z_$][\\w$]*)\\s*=\\s*\`${id}\``, "g");
+    const aliases = new Set([...src.matchAll(aliasRe)].map((m) => m[1]));
+    const idRe = aliases.size
+      ? new RegExp(`id:\\s*(?:\`${id}\`|(${aliases.size ? [...aliases].join("|") : "x"}))`, "g")
+      : new RegExp(`id:\\s*\`${id}\``, "g");
+    for (const m of src.matchAll(idRe)) {
+      // A `chapters:[` blokkot a részletes (detail) objektumban keressük, nem a
+      // listában – különben egy másik téma fejezeteit kapnánk.
+      const ci = findDetailChapters(src, m.index, id, aliases);
+      if (ci < 0) continue;
       const o = ci + "chapters:".length;
       const c = bracket(src, o);
       if (c < 0) continue;
@@ -489,13 +577,24 @@ function extractDetailChapters(src, ids) {
         const start = cm.index;
         const end = bracket(block, start);
         const body = end > 0 ? block.slice(start, end + 1) : "";
+        const mapped = resolveMappedSteps(body);
         const sm = body.match(/\bsteps:\s*([A-Za-z_$][\w$]*)/);
-        const steps = sm ? normalizeSteps(resolveVar(sm[1])) : [];
+        const steps = mapped ?? (sm ? normalizeSteps(resolveVar(sm[1])) : []);
+        // az `unlocksAt` lehet literál (`unlocksAt:`2026-11-03``) vagy változó (`unlocksAt:yt`)
+        const unlocksAt = body.match(/\bunlocksAt:\s*`([^`]*)`/)?.[1]
+          ?? (() => {
+            const name = body.match(/\bunlocksAt:\s*([A-Za-z_$][\w$]*)\b(?!\s*:)/)?.[1];
+            if (!name) return null;
+            const at = findDecl(src, name);
+            if (at < 0) return null;
+            const lit = literalAt(src, at);
+            return lit && /^`[^`]*`$/.test(lit) ? lit.slice(1, -1) : null;
+          })();
         return {
           index: idx,
           title: { hu: cm[0].match(/hu:\s*`([^`]*)`/)?.[1] ?? null, en: cm[0].match(/en:\s*`([^`]*)`/)?.[1] ?? null },
           minutes: Number(cm[0].match(/minutes:\s*(\d+)/)?.[1] ?? 0),
-          unlocksAt: body.match(/unlocksAt:\s*`([^`]*)`/)?.[1] ?? null,
+          unlocksAt,
           stepCount: steps.length,
           steps: steps.map((s, i) => ({ id: s.id, title: s.title?.hu ?? null, kind: s.kind, minutes: s.minutes, index: i })),
         };
@@ -639,6 +738,38 @@ async function main() {
     (knowledgeByDiscussion[k.discussionId] ??= []).push(k.id);
   }
 
+  /**
+   * A kozhang.hu futásidőben számolja a státuszt és a hátralévő napokat
+   * (`qa()` a bundle-ben): a lejárt (`closesAt` < most) téma "closed", a
+   * `daysLeft` pedig a `closesAt` és a most közötti különbség — nem a
+   * buildbe égetett szám. Ugyanezt számoljuk itt is, hogy a lejárt témák
+   * ne "nyitott, 14 nap van hátra" felirattal jelenjenek meg.
+   */
+  const NOW = Date.now();
+  const DAY = 86400000;
+  const parseLocal = (s) => {
+    if (!s) return null;
+    // A bundle dátumai helyi (Budapest) időzónában értendők: "2026-11-08T23:59:00".
+    const t = Date.parse(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2})?$/.test(s) ? s + "+01:00" : s);
+    return Number.isNaN(t) ? null : t;
+  };
+  const runtimeStatus = (d) => {
+    const closes = parseLocal(d.closesAt);
+    if (closes !== null && NOW >= closes) return "closed";
+    if (d.status !== "open") return d.status;
+    const opens = parseLocal(d.opensAt);
+    if (opens !== null && NOW < opens) return "soon";
+    return "open";
+  };
+  const runtimeDaysLeft = (d, status) => {
+    const closes = parseLocal(d.closesAt);
+    if (closes !== null) {
+      if (status === "closed") return 0;
+      return Math.max(1, Math.floor((closes - NOW) / DAY));
+    }
+    return d.daysLeft ?? null;
+  };
+
   const items = discussions.map((d) => {
     const chs = chaptersByDiscussion.get(d.id) ?? [];
     const questions = chs.flatMap((ch) =>
@@ -653,6 +784,7 @@ async function main() {
       })),
     );
     const kb = knowledgeByDiscussion[d.id] ?? [];
+    const status = runtimeStatus(d);
     return {
       id: d.id,
       title: d.title,
@@ -660,12 +792,14 @@ async function main() {
       lead: d.lead,
       category: d.category,
       scope: d.scope ?? "national",
-      status: d.status,
+      status,
       locality: d.locality ?? null,
       participants: d.participants ?? 0,
       completionRate: d.completionRate ?? 0,
-      daysLeft: d.daysLeft ?? null,
+      daysLeft: runtimeDaysLeft(d, status),
       opensAt: d.opensAt ?? null,
+      closesAt: d.closesAt ?? null,
+      resultsAt: d.resultsAt ?? null,
       badgeStyle: d.badgeStyle ?? null,
       brand: !!d.brand,
       photo: resolvePhoto(d.photo),
@@ -700,6 +834,7 @@ async function main() {
       discussions: items.length,
       open: items.filter((i) => i.status === "open").length,
       soon: items.filter((i) => i.status === "soon").length,
+      closed: items.filter((i) => i.status === "closed").length,
       knowledge: knowledge.length,
       taxonomyTopics: taxonomy.length,
       taxonomySubtopics: taxonomy.reduce((n, t) => n + t.subtopics.length, 0),

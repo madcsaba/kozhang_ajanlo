@@ -147,6 +147,25 @@
   </div>
 </section>
 
+<section id="lezart">
+  <div class="sec-head">
+    <div>
+      <h2 class="sec">Lezárt egyeztetések</h2>
+      <span class="hint" id="closedhint"></span>
+    </div>
+  </div>
+  <div class="panel table">
+    <div class="t-head" aria-hidden="true">
+      <span class="c-when">Állapot</span>
+      <span class="c-title">Egyeztetés</span>
+      <span class="c-place">Hely</span>
+      <span class="c-people">Résztvevő</span>
+      <span class="c-act"></span>
+    </div>
+    <div id="closedlist"></div>
+  </div>
+</section>
+
 <section id="naptar">
   <div class="sec-head">
     <div>
@@ -295,6 +314,36 @@ const isQuiet = d => d.status==="open" && (d.participants||0) < QUIET;
 const isInCounty = d => { const r = COUNTY.get(); return !!(r && d.locality?.region === r); };
 const $ = id => document.getElementById(id);
 
+// A dátumok a kozhang.hu saját, helyi (Budapest) időzónájú formátumában érkeznek
+// ("2026-11-08T23:59:00"), ezért helyi időként értelmezzük őket.
+const localDate = s => {
+  if (!s) return null;
+  const m = String(s).match(/^(\d{4})-(\d{2})-(\d{2})(?:[T ](\d{2}):(\d{2}))?/);
+  if (!m) { const t = new Date(s); return isNaN(t) ? null : t; }
+  return new Date(+m[1], +m[2] - 1, +m[3], +(m[4] ?? 0), +(m[5] ?? 0));
+};
+const DAY = 86400000;
+// A hátralévő idő futásidőben, a valódi határidőből számítódik — a buildbe
+// égetett szám napok alatt elavul. Lezárt témánál az eredmények megjelenéséig
+// számolunk (így jelzi a kozhang.hu is).
+const msUntil = s => { const d = localDate(s); return d ? d - new Date() : null; };
+const daysUntil = s => { const ms = msUntil(s); return ms == null ? null : (ms <= 0 ? 0 : Math.ceil(ms / DAY)); };
+// Emberi olvasható visszaszámlálás – a kozhang.hu is óra/perc pontossággal ír.
+const untilText = s => {
+  const ms = msUntil(s);
+  if (ms == null) return null;
+  if (ms <= 0) return "0 nap";
+  const h = Math.floor(ms / 3600000);
+  if (h < 24) {
+    const min = Math.floor((ms % 3600000) / 60000);
+    return h > 0 ? `${h} óra` : `${min} perc`;
+  }
+  return `${Math.ceil(ms / DAY)} nap`;
+};
+const statusDays = d => d.status === "closed"
+  ? daysUntil(d.resultsAt)
+  : (d.closesAt ? daysUntil(d.closesAt) : d.daysLeft);
+
 // Szűrők az URL-ben (?q=…&hely=…&rend=…), hogy egy szűrt nézet is megosztható legyen.
 const URL_KEYS = { q:"q", scope:"hely", sort:"rend" };
 const URL_DEFAULT = { q:"", scope:"all", sort:"due" };
@@ -342,11 +391,13 @@ const W_LABEL = { pop:"népszerűség", fresh:"frissesség", urg:"sürgősség",
   place:"a te megyéd", quiet:"kevés hang", mine:"korábban megnézted", depth:"tartalmi mélység" };
 
 function scoreParts(d, clicks = CLICKS.get()){
-  const days = d.daysLeft==null ? 20 : d.daysLeft;
+  const left = statusDays(d);
+  const days = left==null ? 20 : Math.max(left,0);
   const raw = {
     pop:   Math.log10((d.participants||0)+1) / Math.log10(40000),
-    fresh: d.status==="open" ? 0.55 + 0.45*(1 - Math.min(days,40)/40) : 0.30,
-    urg:   1 - Math.min(days,40)/40,
+    // Lezárt téma már nem ajánlható aktív részvételre – az eredménye érdekelhet.
+    fresh: d.status==="open" ? 0.55 + 0.45*(1 - Math.min(days,40)/40) : d.status==="soon" ? 0.30 : 0.12,
+    urg:   d.status==="open" ? 1 - Math.min(days,40)/40 : 0,
     interest: isMatch(d) ? 1 : 0,
     place: isInCounty(d) ? 1 : 0,
     quiet: isQuiet(d) ? 1 : 0,
@@ -363,10 +414,12 @@ function score(d, clicks = CLICKS.get()){ return scoreParts(d, clicks).total; }
 /** A 3 legerősebb ok szövegesen – a személyes egyezés mindig elöl. */
 function reasons(d, sp){
   const r = [];
+  const left = statusDays(d);
   if (sp.raw.place) r.push([2, `a te megyédben (${COUNTY.get()})`]);
   if (sp.raw.interest) r.push([1.5, `a te érdeklődésed: ${CAT[d.category]||d.category}`]);
-  if (d.status==="open") r.push([sp.parts.fresh+sp.parts.urg, d.daysLeft!=null ? `nyitott, ${d.daysLeft} nap van hátra` : "most nyitott"]);
-  else r.push([sp.parts.fresh, "hamarosan nyílik"]);
+  if (d.status==="open") r.push([sp.parts.fresh+sp.parts.urg, left!=null ? `nyitott, ${left} nap van hátra` : "most nyitott"]);
+  else if (d.status==="soon") r.push([sp.parts.fresh, "hamarosan nyílik"]);
+  else r.push([sp.parts.fresh, d.resultsAt ? "lezárult, az eredmények összesítése folyamatban" : "lezárult, az eredmények elérhetők"]);
   if (sp.raw.quiet) r.push([1, "kevés hangot kapott eddig"]);
   else if (d.participants) r.push([sp.parts.pop, `${fmt(d.participants)} ${d.status==="open"?"résztvevő":"érdeklődő"}`]);
   if (sp.raw.mine) r.push([sp.parts.mine, "korábban megnézted"]);
@@ -425,9 +478,10 @@ function renderNear(){
     return;
   }
   el.innerHTML = `<div class="why-line"><b>A megyédben (${esc(region)})</b></div>` + local.map(d => {
+    const left = statusDays(d);
     const when = d.status==="open"
-      ? `nyitott${d.daysLeft!=null ? ` · ${d.daysLeft} nap van hátra` : ""}${isQuiet(d) ? " · kevés hangot kapott" : ""}`
-      : "hamarosan nyílik";
+      ? `nyitott${left!=null ? ` · ${left} nap van hátra` : ""}${isQuiet(d) ? " · kevés hangot kapott" : ""}`
+      : d.status==="soon" ? "hamarosan nyílik" : "lezárult";
     const p = d.locality.label?.hu || d.locality.town || "";
     return `<a class="item" href="${esc(d.url)}" ${EXT} data-track="${esc(d.id)}">` +
       `${esc(hu(d.title))}<span>${esc(p)} · ${when}</span></a>`;
@@ -435,10 +489,12 @@ function renderNear(){
 }
 
 function renderFeature(){
-  const pool = DATA.discussions.map(d => ({ d, s:score(d) })).sort((a,b) => b.s-a.s).map(x => x.d);
+  // csak az aktívan részt vehető témák ajánlhatók – a lezárttak eredménye érdekelhet
+  const pool = DATA.discussions.filter(d => d.status !== "closed")
+    .map(d => ({ d, s:score(d) })).sort((a,b) => b.s-a.s).map(x => x.d);
   const top = pool[0];
   if (!top){ $("feature").innerHTML = ""; return; }
-  // az első mindig a legerősebb (a statisztika szól), a „ma még” helyek naponta forognak
+  // az első mindig a legerősebb (a statisztika szól), a „ma még" helyek naponta forognak
   const rest = pool.slice(1, 6);
   const rnd = mulberry32(seedFrom(dayKey()));
   for (let i = rest.length-1; i > 0; i--){ const j = Math.floor(rnd()*(i+1)); [rest[i],rest[j]] = [rest[j],rest[i]]; }
@@ -446,7 +502,8 @@ function renderFeature(){
 
   const ci = chapterInfo(top);
   const open = top.status === "open";
-  const pill = top.daysLeft==null ? "" : open ? `Még ${top.daysLeft} nap` : `${top.daysLeft} nap múlva nyílik`;
+  const left = statusDays(top);
+  const pill = left==null ? "" : open ? (left > 0 ? `Még ${left} nap` : "Ma zárul") : `${left} nap múlva nyílik`;
   const nums = [
     [fmt(top.participants), open ? "résztvevő" : "érdeklődő"],
     open && top.completionRate ? [`${top.completionRate}%`, "végig is ment"] : [fmt(top.stepCount||0), "lépés"],
@@ -482,7 +539,7 @@ function renderStats(){
   const dt = new Date(DATA.generatedAt);
   $("statline").innerHTML = [
     [c.discussions, "egyeztetés"], [c.open, "most nyitott"], [c.soon, "hamarosan"],
-    [c.questions, "lépés a nyitott témákban"], [c.knowledge, "háttércikk"],
+    [c.closed ?? 0, "lezárva"], [c.questions, "lépés"], [c.knowledge, "háttércikk"],
   ].map(([n,l]) => `<span><b>${fmt(n)}</b> ${l}</span>`).join("") +
     `<span class="src">Frissítve: ${dt.toLocaleString("hu-HU", { month:"short", day:"numeric", hour:"2-digit", minute:"2-digit" })} · forrás: kozhang.hu</span>`;
   $("footmeta").textContent = `Utolsó adatfrissítés: ${dt.toLocaleString("hu-HU")} · build ${DATA.sourceBuild||"—"}`;
@@ -502,7 +559,7 @@ function filtered(status){
     return true;
   });
   const by = {
-    due: (a,b) => (a.daysLeft??99)-(b.daysLeft??99),
+    due: (a,b) => (statusDays(a) ?? 999) - (statusDays(b) ?? 999),
     score: (a,b) => score(b,clicks)-score(a,clicks),
     participants: (a,b) => (b.participants||0)-(a.participants||0),
     quiet: (a,b) => (a.participants||0)-(b.participants||0),
@@ -521,8 +578,9 @@ function openRow(d){
   const flags = [];
   if (isInCounty(d)) flags.push(`<span class="flag home">★ A megyédben</span>`);
   if (isQuiet(d)) flags.push(`<span class="flag" title="Nyitott téma, kevesebb mint ${fmt(QUIET)} résztvevővel">Kevés hangot kapott</span>`);
+  const left = statusDays(d);
   return `<article class="panel open-row${match ? " is-match" : ""}">
-    <div class="days"><b>${d.daysLeft ?? "—"}</b><span>nap van hátra</span></div>
+    <div class="days"><b>${left ?? "—"}</b><span>nap van hátra</span></div>
     <div class="open-body">
       <span class="kicker">${esc(CAT[d.category]||d.category)} · ${esc(place(d))}${match ? `<span class="tag-match">Érdekel</span>` : ""}${flags.join("")}</span>
       <h3><a href="${esc(d.url)}" ${EXT} data-track="${esc(d.id)}">${esc(hu(d.title))}</a></h3>
@@ -544,8 +602,9 @@ function soonRow(d){
   const match = isMatch(d);
   const sp = scoreParts(d);
   const why = esc(`Miért ajánljuk? ${reasons(d, sp).join(" · ")}`);
+  const left = statusDays(d);
   return `<div class="t-row${match ? " is-match" : ""}">
-    <span class="c-when">${d.daysLeft!=null ? `<b>${d.daysLeft} nap</b><span>múlva nyílik</span>` : `<b>Hamarosan</b>`}</span>
+    <span class="c-when">${left!=null ? `<b>${left} nap</b><span>múlva nyílik</span>` : `<b>Hamarosan</b>`}</span>
     <span class="c-title">
       <a href="${esc(d.url)}" ${EXT} data-track="${esc(d.id)}" title="${why}">${esc(hu(d.title))}</a>
       <span>${esc(CAT[d.category]||d.category)} · ${esc(hu(d.description))}</span>
@@ -559,14 +618,41 @@ function soonRow(d){
   </div>`;
 }
 
+/** Lezárt egyeztetés: az eredmények érdekesek, részt venni már nem lehet. */
+function closedRow(d){
+  const when = d.resultsAt
+    ? (untilText(d.resultsAt) || "az eredmények elérhetők")
+    : "lezárult";
+  const date = localDate(d.closesAt);
+  const closedTxt = date
+    ? `lezárult ${date.toLocaleDateString("hu-HU", { month:"long", day:"numeric" })}`
+    : "lezárult";
+  const whenTxt = d.resultsAt && msUntil(d.resultsAt) > 0 ? `az eredmények ${when} múlva` : when;
+  return `<div class="t-row closed-row">
+    <span class="c-when"><b>Lezárva</b><span>${esc(closedTxt)}</span></span>
+    <span class="c-title">
+      <a href="${esc(d.url)}" ${EXT} data-track="${esc(d.id)}">${esc(hu(d.title))}</a>
+      <span>${esc(CAT[d.category]||d.category)} · ${esc(whenTxt)}</span>
+    </span>
+    <span class="c-place">${esc(place(d))}</span>
+    <span class="c-people">${d.participants ? `${fmt(d.participants)} résztvevő` : "—"}</span>
+    <span class="c-act">
+      <a class="btn small" href="${esc(d.url)}" ${EXT} data-track="${esc(d.id)}">Megnézem</a>
+      <a class="btn small" href="tema/${esc(d.id)}/" title="Megosztható oldal a témáról">Részletek</a>
+    </span>
+  </div>`;
+}
+
 function renderLists(){
-  const open = filtered("open"), soon = filtered("soon");
+  const open = filtered("open"), soon = filtered("soon"), closed = filtered("closed");
   const total = (s) => DATA.discussions.filter(d => d.status===s).length;
   const sortTxt = { due:"határidő szerint", score:"ajánlott sorrendben", participants:"népszerűség szerint", quiet:"kevés hangot kapott téma elöl" }[state.sort];
   $("openhint").textContent = `${open.length} / ${total("open")} egyeztetés · ${sortTxt}`;
   $("soonhint").textContent = `${soon.length} / ${total("soon")} egyeztetés · a megnyitás előtt is megnézheted őket`;
+  $("closedhint").textContent = `${closed.length} / ${total("closed")} lezárt egyeztetés · az eredményeket a kozhang.hu teszi közzé`;
   $("openlist").innerHTML = open.length ? open.map(openRow).join("") : `<div class="panel empty">Nincs a szűrőknek megfelelő nyitott egyeztetés.</div>`;
   $("soonlist").innerHTML = soon.length ? soon.map(soonRow).join("") : `<div class="empty">Nincs a szűrőknek megfelelő közelgő egyeztetés.</div>`;
+  $("closedlist").innerHTML = closed.length ? closed.map(closedRow).join("") : `<div class="empty">Nincs a szűrőknek megfelelő lezárt egyeztetés.</div>`;
 }
 
 function renderSteps(){
@@ -786,7 +872,7 @@ function renderCal(){
   const evByDate = {};
   for (const e of all) (evByDate[e.date] = evByDate[e.date] || []).push(e);
   const MON = ["január","február","március","április","május","június","július","augusztus","szeptember","október","november","december"];
-  const KINDL = { open:"megnyílás", chapter:"új fejezet", new:"új téma" };
+  const KINDL = { open:"megnyílás", chapter:"új fejezet", new:"új téma", close:"lezárás", results:"eredmények" };
   const shortDate = ds => { const [,m,d] = ds.split("-").map(Number); return `${["jan.","febr.","márc.","ápr.","máj.","jún.","júl.","aug.","szept.","okt.","nov.","dec."][m-1]} ${d}.`; };
   cal.innerHTML = months.map(ym => {
     const [y, m] = ym.split("-").map(Number);

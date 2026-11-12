@@ -34,12 +34,40 @@ Nincs függőség, csak Node 18+ (beépített `fetch`).
 
 | Adat | Mennyiség | Honnan |
 |---|---|---|
-| Egyeztetések | 16 (3 nyitott, 13 hamarosan) | `Lo=[{id:…}]` tömb |
-| Fejezetek + kérdések | 12 fejezet, 62 kérdés | `chapters:[{steps:…}]` a nyitott témáknál |
+| Egyeztetések | 12 (1 nyitott, 8 hamarosan, 3 lezárt) | `Lo=[{id:…}]` tömb |
+| Fejezetek + kérdések | a nyitott/lejárt témáknál fejezetenként | `chapters:[{steps:…}]` a részletes objektumokban |
 | Tudástér-cikkek | 19 | `JSON.parse(\`…\`)` blokk |
 | Téma-taxonómia | 12 fő téma × 10 altéma = 120 | `"education-1":"…"` párok |
 | Videó-beszélők | 8 | `contentByDiscussion` cinema blokkok |
 | Képek | 28 | `.jpg` → `.webp` átalakítással ellenőrizve |
+
+### Státusz és határidők – futásidőben
+
+A kozhang.hu a státuszt és a hátralévő napokat **futásidőben** számítja, nem a
+buildbe égetett számokból. Az extractor ugyanezt teszi:
+
+- `closesAt` a lezárás, `resultsAt` az eredmények megjelenésének ideje — mindkettő
+  a bundle-ben megvan, és az adatcsomagba is bekerül;
+- a lejárt (`closesAt` < most) téma státusza `closed`, a még nem nyílt (`opensAt`
+  a jövőben) `soon`, egyébként `open`;
+- a `daysLeft` a `closesAt` és a most közötti különbség — nem a bundle számai.
+
+A `daysLeft` a buildbe égetett érték **napok alatt elavul**, ezért a főoldal a
+`closesAt`-ből újraszámolja a hátralévő napokat (lejárt témánál az
+`resultsAt`-ig számol, ahogy a kozhang.hu is).
+
+A dátumok a kozhang.hu saját, helyi (Budapest) időzónájú formátumában érkeznek
+(`"2026-11-08T23:59:00"`), ezért helyi időként értelmezzük őket.
+
+### A MEMI-téma különleges esete
+
+Két okból tér el a többitől, és mindkettőre külön kezelés kell:
+
+- az azonosítója egy kiemelt változó (`id:b`, ahol `b=`memi-tarsadalmi-reszvetel``);
+- a lépései egy `.map()` hívásból jönnek (`steps:bt.map(...)`), ahol a `bt`
+  `[id,hu,en]` sorokból álló tömb.
+
+Ezek nélkül a téma 0 fejezettel és 0 lépéssel érkezne.
 
 ## Az ajánlási pontszám
 
@@ -82,8 +110,8 @@ szerinti kiemelt felhívás, valamint `sitemap.xml` és `robots.txt`.
 | Kimenet | Tartalom |
 |---|---|
 | `tema/<id>/` | témánként saját oldal OpenGraph-kártyával (Facebookon, Messengeren előnézettel osztható), fejezetekkel, lépésekkel, Tudástér-anyagokkal és kapcsolódó témákkal |
-| `feed.xml` | Atom-hírcsatorna: új témák (`firstSeen`) és megnyílt fejezetek |
-| `naptar.ics` | feliratkozható naptár: témanyitások (`opensAt`) és fejezetnyitások (`unlocksAt`), Europe/Budapest időzónában |
+| `feed.xml` | Atom-hírcsatorna: új témák (`firstSeen`), fejezetnyitások, lezárások és eredmények |
+| `naptar.ics` | feliratkozható naptár: témanyitások (`opensAt`), lezárások (`closesAt`), eredmények (`resultsAt`) és fejezetnyitások (`unlocksAt`), Europe/Budapest időzónában |
 | `sitemap.xml` | a főoldal, a 7 kategória-aloldal és a témaoldalak – a `build-pages.mjs` írja felülre, ezért mindig az ő teljes sitemapje érvényes |
 
 A kimenetet nem verziókezeljük: a `deploy-pages.yml` minden kiadás előtt mindkettőt legenerálja.

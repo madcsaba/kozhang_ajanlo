@@ -28,6 +28,12 @@ const fail = (msg) => { console.error(`✗ ${msg}`); process.exit(1); };
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const fmt = (n) => n == null ? "—" : new Intl.NumberFormat("hu-HU").format(n);
 const pickHu = (v) => typeof v === "string" ? v : (v?.hu || v?.en || "");
+// A dátumok helyi (Budapest) időzónában értendők: "2026-11-08T23:59:00".
+const huDate = (s) => {
+  const m = String(s ?? "").match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if (!m) return "";
+  return new Date(+m[1], +m[2] - 1, +m[3]).toLocaleDateString("hu-HU", { year: "numeric", month: "long", day: "numeric" });
+};
 
 let DATA;
 try {
@@ -119,6 +125,18 @@ const soonRow = (d) => `<div class="t-row">
     <span class="c-act"><a class="btn small" href="${esc(d.url)}" ${EXT}>Megnézem</a></span>
   </div>`;
 
+// lezárt egyeztetés: az eredmények érdekesek, részt venni már nem lehet
+const closedRow = (d) => `<div class="t-row">
+    <span class="c-when"><b>Lezárva</b><span>${d.closesAt ? esc(huDate(d.closesAt)) : ""}</span></span>
+    <span class="c-title">
+      <a href="${esc(d.url)}" ${EXT}>${esc(pickHu(d.title))}</a>
+      <span>${esc(pickHu(d.description))}</span>
+    </span>
+    <span class="c-place">${esc(place(d))}</span>
+    <span class="c-people">${d.participants ? `${fmt(d.participants)} résztvevő` : "—"}</span>
+    <span class="c-act"><a class="btn small" href="${esc(d.url)}" ${EXT}>Megnézem</a></span>
+  </div>`;
+
 const kitem = (k) => {
   const d = k.date ? new Date(k.date + "T00:00:00") : null;
   const dateTxt = d && !isNaN(d) ? d.toLocaleDateString("hu-HU", { month: "short", day: "numeric" }) : "";
@@ -186,7 +204,8 @@ const promoHtml = (p) => {
 function page(catKey, discs, knos, promos) {
   const { label, intro } = CATS[catKey];
   const openList = discs.filter(d => d.status === "open").sort((a, b) => (a.daysLeft ?? 99) - (b.daysLeft ?? 99));
-  const soonList = discs.filter(d => d.status !== "open").sort((a, b) => (a.daysLeft ?? 99) - (b.daysLeft ?? 99));
+  const soonList = discs.filter(d => d.status === "soon").sort((a, b) => (a.daysLeft ?? 99) - (b.daysLeft ?? 99));
+  const closedList = discs.filter(d => d.status === "closed");
   const questions = discs.reduce((n, d) => n + (d.questions?.length || 0), 0);
   const desc = `${intro} ${discs.length} egyeztetés, ${questions} kérdés – a kozhang.hu nyilvános adataiból.`;
   const gen = new Date(DATA.generatedAt || Date.now());
@@ -200,6 +219,7 @@ function page(catKey, discs, knos, promos) {
     <span><b>${discs.length}</b> egyeztetés</span>
     <span><b>${openList.length}</b> most nyitott</span>
     <span><b>${soonList.length}</b> hamarosan</span>
+    <span><b>${closedList.length}</b> lezárva</span>
     <span><b>${questions || "—"}</b> lépés</span>
     <span><b>${knos.length || "—"}</b> háttércikk</span>
     <span class="src">Frissítve: ${esc(genTxt)} · forrás: kozhang.hu</span>
@@ -236,6 +256,7 @@ function page(catKey, discs, knos, promos) {
     <nav class="site-nav" aria-label="Fő navigáció">
       ${openList.length ? `<a href="#nyitott">Most nyitott</a>` : ""}
       ${soonList.length ? `<a href="#hamarosan">Hamarosan</a>` : ""}
+      ${closedList.length ? `<a href="#lezart">Lezárva</a>` : ""}
       ${knos.length ? `<a href="#tudaster">Tudástér</a>` : ""}
       <a href="../../">Minden téma</a>
     </nav>
@@ -280,6 +301,19 @@ ${soonList.length ? `<section id="hamarosan">
       <span class="c-when">Nyílik</span><span class="c-title">Egyeztetés</span><span class="c-place">Hely</span><span class="c-people">Érdeklődő</span><span class="c-act"></span>
     </div>
     ${soonList.map(soonRow).join("")}
+  </div>
+</section>` : ""}
+
+${closedList.length ? `<section id="lezart">
+  <div class="sec-head"><div>
+    <h2 class="sec">Lezárt egyeztetések</h2>
+    <span class="hint">${closedList.length} lezárt téma – az eredményeket a kozhang.hu teszi közzé</span>
+  </div></div>
+  <div class="panel table">
+    <div class="t-head" aria-hidden="true">
+      <span class="c-when">Állapot</span><span class="c-title">Egyeztetés</span><span class="c-place">Hely</span><span class="c-people">Résztvevő</span><span class="c-act"></span>
+    </div>
+    ${closedList.map(closedRow).join("")}
   </div>
 </section>` : ""}
 

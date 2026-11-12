@@ -50,6 +50,7 @@ if (!(c.mediaSpeakers >= 5)) fails(`videó-beszélő: ${c.mediaSpeakers} (legal�
 
 // Szerkezeti épség
 const discs = Array.isArray(d.discussions) ? d.discussions : [];
+const NOW = Date.now();
 for (const x of discs) {
   if (!x.title?.hu) fails(`${x.id ?? "?"}: nincs magyar cím`);
   if (!/^https:\/\/kozhang\.hu\/egyeztetesek\/[a-z0-9-]+$/.test(x.url ?? ""))
@@ -57,6 +58,31 @@ for (const x of discs) {
   if (!["open", "soon", "closed"].includes(x.status))
     fails(`${x.id}: ismeretlen státusz: ${x.status}`);
   if (!CATS.has(x.category)) fails(`${x.id}: ismeretlen kategória: ${x.category}`);
+  // A lejárt témák státuszát a kozhang.hu logikája szerint futásidőben
+  // számítjuk – ellenőrizzük, hogy a lezárási dátum valóban a státuszt támasztja alá.
+  if (x.status === "closed" && !x.closesAt) fails(`${x.id}: lezárva, de nincs closesAt`);
+  if (x.status === "open" && x.closesAt) {
+    const t = Date.parse(`${x.closesAt}+01:00`);
+    if (!isNaN(t) && t <= NOW) fails(`${x.id}: lejárt (${x.closesAt}), mégis nyitott`);
+  }
+  if (x.status === "closed" && x.closesAt) {
+    const t = Date.parse(`${x.closesAt}+01:00`);
+    if (!isNaN(t) && t > NOW) fails(`${x.id}: még nem lejárt (${x.closesAt}), mégis lezárva`);
+  }
+  // a fejezetek és a lépések összhangja – a hibás fejezet-hozzárendelés itt
+  // derülne ki (pl. ha egy téma másik téma fejezeteit kapná)
+  const chapters = Array.isArray(x.chapters) ? x.chapters : [];
+  if (chapters.length) {
+    const sumSteps = chapters.reduce((n, ch) => n + (ch.stepCount || 0), 0);
+    const qs = Array.isArray(x.questions) ? x.questions : [];
+    if (qs.length && sumSteps !== qs.length)
+      fails(`${x.id}: a fejezetek lépésszáma (${sumSteps}) nem egyezik a kérdésekkel (${qs.length})`);
+    for (const q of qs) {
+      if (!q.title) fails(`${x.id}/${q.id}: lépésnek nincs címe`);
+      if (!q.url || !q.url.startsWith("https://kozhang.hu/egyeztetesek/"))
+        fails(`${x.id}/${q.id}: hibás lépés-hivatkozás: ${q.url}`);
+    }
+  }
 }
 const known = new Set(discs.map((x) => x.id));
 if (known.size !== discs.length) fails("duplált téma-azonosító van a csomagban");
