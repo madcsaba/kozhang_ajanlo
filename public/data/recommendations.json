@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-11-11T12:00:36.856Z",
+  "generatedAt": "2026-11-12T13:04:13.542Z",
   "source": "https://kozhang.hu",
-  "sourceBuild": "Bv9aaEQ_",
+  "sourceBuild": "CxmwYcSk",
   "counts": {
     "discussions": 12,
     "open": 4,
@@ -103,7 +103,7 @@
           "index": 5,
           "title": {
             "hu": "A kultúra, az oktatás és a tudomány közvetítése",
-            "en": "Mediating culture, education and science"
+            "en": "Presenting culture, education and science"
           },
           "minutes": 12,
           "unlocksAt": "2026-10-05T07:00:00",
@@ -978,7 +978,7 @@
       "id": "kresz-megujitasa",
       "title": {
         "hu": "A KRESZ megújítása",
-        "en": "Renewing the highway code"
+        "en": "Renewing the Highway Code"
       },
       "description": {
         "hu": "Hogyan lehet korszerűbb és biztonságosabb a közlekedés?",
@@ -1093,7 +1093,7 @@
           "index": 5,
           "title": {
             "hu": "A kultúra, az oktatás és a tudomány közvetítése",
-            "en": "Mediating culture, education and science"
+            "en": "Presenting culture, education and science"
           },
           "minutes": 12,
           "unlocksAt": "2026-10-05T07:00:00",
@@ -1968,11 +1968,11 @@
       "id": "palatinus-to",
       "title": {
         "hu": "Az esztergomi Palatinus-tó megújítása",
-        "en": "The renewal of the Palatinus lake in Esztergom"
+        "en": "Renewing Lake Palatinus in Esztergom"
       },
       "description": {
         "hu": "Hogyan alakítsuk együtt a Palatinus-tó jövőjét?",
-        "en": "How should we shape the future of the Palatinus lake together?"
+        "en": "How should we shape the future of Lake Palatinus together?"
       },
       "lead": {
         "hu": "A tó nem egyetlen csoporté — döntsd el velünk, mi legyen belőle.",
@@ -2244,7 +2244,7 @@
         "hu": "Hogyan javíthatjuk a köztisztaságot a belvárosban?"
       },
       "lead": {
-        "en": "A public space is only as clean as we keep it together — show us where it pinches most.",
+        "en": "A public space is only as clean as we all keep it. Show us where the problem is most pressing.",
         "hu": "A közterület annyira tiszta, amennyire közösen tartjuk – mutasd meg, hol szorít a legjobban."
       },
       "category": "municipality",
@@ -2289,7 +2289,7 @@
         "hu": "Hogyan egyeztethető össze a zártkertek használata, fejlesztése és védelme?"
       },
       "lead": {
-        "en": "A holiday plot, a smallholding or a home — tell us what the closed gardens should stay.",
+        "en": "A weekend retreat, a smallholding or a home: tell us what the closed gardens should be kept as.",
         "hu": "Nyaraló, gazdaság vagy otthon – mondd el, minek tartsuk meg a zártkerteket."
       },
       "category": "municipality",
@@ -2330,7 +2330,7 @@
         "hu": "EFOTT 2027"
       },
       "description": {
-        "en": "How can we shape EFOTT, moving to Esztergom, together with the people who live here?",
+        "en": "How can we shape EFOTT, which is moving to Esztergom, together with local people?",
         "hu": "Hogyan formáljuk az Esztergomba költöző EFOTT-ot a helyiekkel közösen?"
       },
       "lead": {
@@ -2493,7 +2493,7 @@
         "hu": "Hogyan működik ez más országokban?"
       },
       "lead": {
-        "en": "What actually makes a media organisation a public service? The international examples below show the missions, principles and operating guarantees that make public media serve society as a whole — independently, in all its diversity, and accessibly to everyone.",
+        "en": "Find out more about it.",
         "hu": "Tudj meg róla többet!"
       },
       "categories": [
@@ -2514,11 +2514,11 @@
     {
       "id": "kiegyensulyozott-musorkinalat",
       "title": {
-        "en": "Does a public broadcaster’s programme offering need to be balanced?",
+        "en": "Does public media’s programming need to be balanced?",
         "hu": "Fontos, hogy egy közmédia műsorkínálata kiegyensúlyozott legyen?"
       },
       "lead": {
-        "en": "A balanced programme offering does not only mean that different viewpoints appear on public media. It also matters which topics and genres get a place, when and on which platform audiences can encounter them, who they reach, and who takes part in making them.",
+        "en": "A balanced range of programmes does not only mean that different viewpoints appear in public media. It also matters which topics and genres are given space, when and on which platform audiences can encounter them, who they reach, and who takes part in making them.",
         "hu": "A kiegyensúlyozott műsorkínálat nemcsak azt jelenti, hogy különböző álláspontok jelennek meg a közmédiában. Az is számít, milyen témák és műfajok kapnak helyet, mikor és melyik felületen találkozhat velük a közönség, kikhez jutnak el, valamint hogy kik vesznek részt az elkészítésükben."
       },
       "categories": [
@@ -2538,7 +2538,7 @@
         "hu": "Mi kap ma túl kevés figyelmet, és milyen új műsorokra lenne szükség? – Hogy látja ezt ma a szakma?"
       },
       "lead": {
-        "en": "The professional opinions received for Közhang’s consultation put forward concrete proposals ranging from contemporary literature and documentary film through science communication and social issues to artificial intelligence. The proposals share a common question: what stories, communities and knowledge could the public media of the future make more visible?",
+        "en": "The professional opinions received for Közhang’s discussion put forward concrete proposals ranging from contemporary literature and documentary film through science communication and social issues to artificial intelligence. The proposals share a common question: what stories, communities and knowledge could the public media of the future make more visible?",
         "hu": "A Közhang egyeztetéséhez érkezett szakmai véleményekben konkrét javaslatok fogalmazódtak meg a kortárs irodalomtól és dokumentumfilmtől a tudományos ismeretterjesztésen és társadalmi ügyeken át egészen a mesterséges intelligenciáig. A felvetések közös kérdése: milyen történeteket, közösségeket és tudást tehetne láthatóbbá a jövő közmédiája?"
       },
       "categories": [
@@ -2859,11 +2859,11 @@
       "id": "kozszolgalati-media-a-vilagban",
       "title": {
         "hu": "A közszolgálati média mindenhol más – de van, ami közös bennük",
-        "en": "Public-service media is different everywhere — but some things are shared"
+        "en": "Public service media differs from country to country, but some things are shared"
       },
       "lead": {
         "hu": "Hét közszolgálati médiaház küldetése, alapelvei, csatornái és egy-egy érdekessége Európából és a világból.",
-        "en": "The mission, principles, channels and one notable fact for seven public-service broadcasters in Europe and beyond."
+        "en": "The mission, principles, channels and one notable fact about each of seven public service broadcasters in Europe and beyond."
       },
       "categories": [
         "public-media"
@@ -2878,7 +2878,7 @@
     {
       "id": "mitol-kozszolgalati-a-kozmedia-europaban",
       "title": {
-        "en": "What makes public media public service in Europe?",
+        "en": "What makes public media a public service in Europe?",
         "hu": "Mitől közszolgálati a közmédia Európában?"
       },
       "lead": {
