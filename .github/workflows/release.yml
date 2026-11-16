@@ -1,0 +1,50 @@
+name: Release
+
+# A kiadás a saját CI-jében készül el: a GITHUB_TOKEN a repóhoz tartozik,
+# így nem kell külön PAT-jog a release-ek létrehozásához.
+# A workflow a v* tag pusholásakor indul el.
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'A kiadás tagje (pl. v1.0.0)'
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: A tag és a kiadás adatai
+        id: meta
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="${{ inputs.tag }}"
+          if [ -z "$TAG" ]; then TAG="${GITHUB_REF_NAME}"; fi
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "title=$(git tag -l "$TAG" --format='%(contents:subject)')" >> "$GITHUB_OUTPUT"
+
+      - name: Release létrehozása
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.meta.outputs.tag }}
+          TITLE: ${{ steps.meta.outputs.title }}
+        run: |
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "A(z) $TAG kiadás már létezik – kihagyva."
+            exit 0
+          fi
+          gh release create "$TAG" \
+            --title "${TITLE:-$TAG}" \
+            --notes "$(git tag -l "$TAG" --format='%(contents)')" \
+            || gh release create "$TAG" --title "${TITLE:-$TAG}" --generate-notes
+          echo "Kész: $TAG"
