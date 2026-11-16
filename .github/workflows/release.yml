@@ -25,6 +25,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          # a kiadás szövege a main aktuális állapotából jön (a tag a kiadás
+          # pillanatát jelöli, a szöveg viszont mindig a legfrissebb)
+          ref: ${{ github.event.repository.default_branch }}
           fetch-depth: 0
 
       - name: A tag meghatározása
