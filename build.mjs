@@ -353,6 +353,7 @@ ${knos.length ? `<section id="tudaster">
     </div>
   </div>
 </footer>
+<script data-goatcounter="https://kiazami.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
 `;
