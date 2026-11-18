@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-11-17T11:53:44.948Z",
+  "generatedAt": "2026-11-18T13:18:17.113Z",
   "source": "https://kozhang.hu",
-  "sourceBuild": "D0UH5p_s",
+  "sourceBuild": "bldAb7Pk",
   "counts": {
     "discussions": 12,
     "open": 1,
@@ -26,7 +26,7 @@
     {
       "id": "kozmedia-2030",
       "title": {
-        "en": "What public media do we want in 2030?",
+        "en": "What should public media look like in 2030?",
         "hu": "Milyen közmédiát szeretnénk 2030-ban?"
       },
       "description": {
@@ -96,7 +96,7 @@
           "index": 4,
           "title": {
             "hu": "Helyi közösségek és a külhoni magyarság",
-            "en": "Local communities and Hungarians beyond the borders"
+            "en": "Local communities and Hungarians beyond Hungary's borders"
           },
           "minutes": 12,
           "unlocksAt": "2026-09-28T07:00:00",
@@ -1043,7 +1043,7 @@
       "opensAt": "2026-09-15T07:00:00",
       "closesAt": null,
       "resultsAt": null,
-      "badgeStyle": "heart",
+      "badgeStyle": null,
       "brand": true,
       "photo": null,
       "hero": "https://kozhang.hu/kozhang/img/webapp/discussion-hero-common-platform.webp",
