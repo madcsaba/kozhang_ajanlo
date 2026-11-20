@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-11-18T13:18:17.113Z",
+  "generatedAt": "2026-11-20T13:24:49.651Z",
   "source": "https://kozhang.hu",
-  "sourceBuild": "bldAb7Pk",
+  "sourceBuild": "BL5bvz2w",
   "counts": {
     "discussions": 12,
     "open": 1,
@@ -46,7 +46,7 @@
       "daysLeft": 0,
       "opensAt": null,
       "closesAt": "2026-11-02T00:00:00",
-      "resultsAt": "2026-11-23T07:00:00",
+      "resultsAt": "2026-11-25T07:00:00",
       "badgeStyle": null,
       "brand": false,
       "photo": "https://kozhang.hu/kozhang/img/topics/media.webp",
